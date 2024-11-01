@@ -1,0 +1,29 @@
+
+.heroSection {
+    text-align: center; 
+    padding: 50px 20px; 
+    background-color: #f0f0f0; 
+}
+
+.title {
+    font-size: 2rem; 
+    color: #ffd700; 
+}
+
+.description {
+    font-size: 1rem; 
+    color: #000; 
+}
+
+.ctaButton {
+    padding: 10px 15px; 
+    background-color: #ffd700; 
+    color: #000; 
+    border: none; 
+    border-radius: 5px; 
+}
+
+.ctaButton:hover {
+    background-color: #000; 
+    color: #ffd700;
+}
