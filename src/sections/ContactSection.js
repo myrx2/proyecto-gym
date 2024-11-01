@@ -1,4 +1,3 @@
-// src/sections/ContactSection.js
 export default function ContactSection() {
     return (
       <section>

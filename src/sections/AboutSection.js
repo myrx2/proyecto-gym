@@ -1,4 +1,3 @@
-// src/sections/AboutSection.js
 export default function AboutSection() {
     return (
       <section>

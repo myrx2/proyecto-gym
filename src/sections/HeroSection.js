@@ -1,5 +1,4 @@
-// src/sections/HeroSection.js
-import styles from '../styles/HeroSection.module.css'; // Importa los estilos para esta sección
+import styles from '../styles/HeroSection.module.css'; 
 
 export default function HeroSection() {
   return (
