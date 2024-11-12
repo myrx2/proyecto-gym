@@ -1,8 +1,9 @@
+import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
 import ProductsSection from '../sections/ProductsSection';
 import ContactSection from '../sections/ContactSection';
 import styles from '../styles/index.module.css';
-import HeroSection from '../sections/HeroSection';
+
 
 export default function Home() {
   return (
