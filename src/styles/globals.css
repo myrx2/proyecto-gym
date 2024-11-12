@@ -1,25 +1,110 @@
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    scroll-behavior: smooth;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 0;
 }
 
 .main {
-  flex: 1;
-  padding: 20px;
-  width: 100%; 
+    flex: 1;
+    padding: 20px 20px 0;
+    width: 100%;
 }
 
-.nav-link {
-  transition: color 0.3s ease; 
+.owl-carousel {
+    margin: 20px auto 0;
+    padding: 10px;
+    display: block;
+    position: relative;
 }
 
-.nav-link:hover {
-  color: yellow !important; 
+.owl-carousel .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.owl-carousel .item img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+@media (max-width:768px) {
+    .owl-carousel {
+        margin: 20px auto 0;
+        max-width: 90%;
+    }
+
+    .owl-carousel .item {
+        height: 150px;
+    }
+
+    .owl-carousel .item img {
+        max-width: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 480px) {
+    .owl-carousel .item {
+        height: 120px;
+    }
+
+    .owl-carousel .item img {
+        max-width: 100%;
+    }
+}
+
+header, footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:focus {
+    outline: none;
+    background-color: #2980b9;
+}
+
+h1, h2, h3 {
+    margin-top: 20px;
+    padding: 15px 0;
+    background-color: transparent;
+    color: #333;
 }
