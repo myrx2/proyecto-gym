@@ -1,4 +1,4 @@
-// src/sections/ProductSection.js
+
 export default function ProductSection() {
   return (
     <section>
