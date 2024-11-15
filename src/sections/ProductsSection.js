@@ -1,8 +1,21 @@
-export default function ProductsSection() {
+import React from 'react';
+import PlanCard from '../components/PlanCard';
+import planData from '../utils/planData';
+
+const ProductsSection = () => {
   return (
-    <section>
-      <h2>Productos</h2>
-      <p>Descubre nuestra variedad de productos diseñados para mejorar tu entrenamiento.</p>
+    <section className="products-section">
+      {planData.map((plan, index) => (
+        <PlanCard
+          key={index}
+          title={plan.title}
+          description={plan.description}
+          price={plan.price}
+          onAcquire={plan.onAcquire}
+        />
+      ))}
     </section>
   );
-}
+};
+
+export default ProductsSection;
