@@ -3,7 +3,8 @@ import AboutSection from '../sections/AboutSection';
 import ProductSection from '../sections/ProductsSection';
 import ContactSection from '../sections/ContactSection';
 import styles from '../styles/index.module.css';
-import HeroSection from '../sections/HeroSection';
+import OwlCarouselComponent from '@/components/owlCarousel';
+
 
 export default function Home () {
     return (
@@ -26,7 +27,7 @@ export default function Home () {
 
                 <section className={styles['section']}>
                     <h2>Nuestras Instalaciones</h2>
-                    <OwlCarousel />
+                    <OwlCarouselComponent />
                 </section>
 
                 
