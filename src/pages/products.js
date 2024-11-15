@@ -1,9 +1,9 @@
-// src/sections/ProductSection.js
-export default function ProductSection() {
+import ProductsSection from '../sections/ProductsSection';
+
+export default function Products() {
   return (
-    <section>
-      <h2>Productos Disponibles</h2>
-      <p>Explora nuestros productos y encuentra lo que mejor se adapta a tus necesidades.</p>
-    </section>
+    <main>
+      <ProductsSection />
+    </main>
   );
 }

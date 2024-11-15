@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand d-flex align-items-center" style={{ color: '#FFD700' }}>
+        <Link href="/" className="navbar-brand d-flex align-items-center" style={{ color: 'yellow' }}>
           <Image
             src="/images/logo.png" 
             alt="Logo del Gimnasio"
