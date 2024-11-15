@@ -1,6 +1,6 @@
 import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
-import ProductsSection from '../sections/ProductsSection';
+import {ProductsSection, CardSection} from '../sections/ProductsSection';
 import ContactSection from '../sections/ContactSection';
 import styles from '../styles/index.module.css';
 import OwlCarouselComponent from '@/components/owlCarousel';
