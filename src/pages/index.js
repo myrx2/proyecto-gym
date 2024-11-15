@@ -1,6 +1,6 @@
 import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
-import ProductSection from '../sections/ProductsSection';
+import ProductsSection from '../sections/ProductsSection';
 import ContactSection from '../sections/ContactSection';
 import styles from '../styles/index.module.css';
 import OwlCarouselComponent from '@/components/owlCarousel';
@@ -22,7 +22,8 @@ export default function Home () {
 
 
                 <section className={styles['section']}>
-                    <ProductSection />
+                    <h2>Nuestros Planes</h2>
+                    <ProductsSection />
                 </section>
 
                 <section className={styles['section']}>
