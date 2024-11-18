@@ -3,7 +3,12 @@ export default function ContactSection() {
       <section>
          <h2>Contacto</h2>
         
-         <p> ➡  section in progress ... ✔ </p>
+         <p> ➡  to do ... : <br></br>
+             🔸rrss arriba <br></br>
+             🔸 agregar más opciones en select <br></br>  
+             🔸estilo <br></br>
+             
+         </p>
      
          {/* frase motivadora */}
          <p>
@@ -18,26 +23,35 @@ export default function ContactSection() {
              <form>
                 <fieldset>
                    <label htmlFor='nombre'> Nombre: </label>
-                   <input type='text' id='nombre'>               
+                   <input type='text' name="nombre" id='nombre'>               
                    </input>
                 </fieldset>
           
                 <fieldset>
                    <label htmlFor='apellido'> Apellido: </label>
-                   <input type='text' id='apellido'>               
+                   <input type='text' name="apellido" id='apellido'>               
                    </input>
                 </fieldset>
 
                 <fieldset>
                    <label htmlFor='mail'> Email: </label>
-                   <input type='email' id='mail'>               
+                   <input type='email'name="mail" id='mail'>               
                    </input>
                 </fieldset>
 
                 <fieldset>
                    <label htmlFor='celu'> Celular: </label>
-                   <input type='tel' id='celu'>               
+                   <input type='tel' name="celu" id='celu'>               
                    </input>
+                </fieldset>
+
+                <fieldset>
+                   <label htmlFor="select"> Elegir una opción:</label>
+                   <select>
+                      <option selected value="info">Info</option>
+                      <option value="productos">Productos</option>
+                      <option  value="planes">Planes</option>
+                   </select>
                 </fieldset>
 
                 <div>
