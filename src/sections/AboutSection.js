@@ -1,4 +1,3 @@
-// src/sections/AboutSection.js
 import React from "react";
 import ClasesCard from "../components/ClasesCard";
 import clasesData from "../utils/clasesData";
