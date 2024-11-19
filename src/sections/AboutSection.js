@@ -18,7 +18,7 @@ export default function AboutSection() {
         </li>
       </ul>
       <div>
-        <img src="/images/cinta.jpg" alt="Imagen del Gimnasio" />
+        <img src="/images/cinta.jpg" alt="Imagen del Gimnasio"/>
       </div>
     </section>
   );
