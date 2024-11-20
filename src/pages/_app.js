@@ -1,3 +1,4 @@
+// src/pages/_app.js
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -6,6 +7,7 @@ import '../styles/globals.css';
 import '../styles/carousel.css';
 import Head from 'next/head';
 import styles from '../styles/App.module.css';
+import { ShoppingCartProvider } from '../context/ShoppingCartContext'; // Importar el proveedor del contexto
 
 export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -17,15 +19,16 @@ export default function MyApp({ Component, pageProps }) {
       <Head>
         <title>Mi Gimnasio</title>
         <meta name="description" content="Bienvenido a nuestro gimnasio." />
-        
       </Head>
-      <div className={styles.container}>
-        <Header />
-        <main className={styles.main}>
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-      </div>
+      <ShoppingCartProvider> {/* Envuelve toda la aplicación con el contexto */}
+        <div className={styles.container}>
+          <Header />
+          <main className={styles.main}>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </div>
+      </ShoppingCartProvider>
     </>
   );
 }

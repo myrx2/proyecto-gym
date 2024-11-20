@@ -1,9 +1,11 @@
-import CartSection from '../sections/CartSection';
+import ShoppingCart from "@/components/ShoppingCart";  // Asegúrate de que esta ruta sea correcta
 
-export default function CartPage() {
+const CartPage = () => {
   return (
-    <main>
-      <CartSection />
-    </main>
+    <div>
+      <ShoppingCart />
+    </div>
   );
-}
+};
+
+export default CartPage;
