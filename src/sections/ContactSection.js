@@ -1,9 +1,11 @@
+import styles from '../styles/contactSection.module.css'; 
+
 export default function ContactSection() {
     return (
-      <section>
+      <section className={styles.contactSection}>
          <h2>Contacto</h2>
         
-         <p> ➡  to do ... : <br></br>
+         <p className= {styles.description}> ➡  to do ... : <br></br>
              🔸rrss arriba <br></br>
              🔸 agregar más opciones en select <br></br>  
              🔸estilo <br></br>
@@ -23,7 +25,7 @@ export default function ContactSection() {
              <form>
                 <fieldset>
                    <label htmlFor='nombre'> Nombre: </label>
-                   <input type='text' name="nombre" id='nombre'>               
+                   <input type='text' name="nombre" id='nombre'>                
                    </input>
                 </fieldset>
           
@@ -59,7 +61,7 @@ export default function ContactSection() {
                    <textarea> </textarea>
                 </div>
 
-                <button> Enviar </button>
+                <button className={styles.ctaButton}> Enviar </button>
              </form>
         </div>
       </section>
