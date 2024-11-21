@@ -17,12 +17,7 @@ export default function AboutSection() {
           Contamos con equipos de última tecnología para ofrecerte un entrenamiento seguro y efectivo, adaptado a tus necesidades.
         </li>
       </ul>
-      <div> style= {{
-        borderBotton:'10px solid black',
-     
-        margin: 0
-      }}
-     
+      <div> className="corre" 
         <img src="/images/cinta.jpg" alt="Imagen del Gimnasio" />
       </div>
     </section>
