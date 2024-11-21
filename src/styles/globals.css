@@ -26,24 +26,70 @@ body {
     width: 100%;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
 
 .nav-link {
-  transition: color 0.3s ease; 
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: yellow !important; 
+    color: yellow !important;
 }
 
 
-.products-section, .plans-section {
+.products-section,
+.plans-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
-  }
+}
+
+
+/* --------------Estilos globales section About us--------- */
+
+.sectionUs li {
+    list-style: none;
+    font-size: 18px;
+}
+
+.sectionUs h3,
+ul {
+    text-align: center;
+}
+
+.imageUs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0; 
+    padding: 0 15px; 
+    width: 100%;
+}
+
+.imageUs img {
+    width: 100%;
+    max-width: 30rem; 
+    height: auto; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+@media (max-width: 768px) {
+    .imageUs img {
+        max-width: 25rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .imageUs img {
+        max-width: 20rem; 
+    }
+}
+
+/* --------------FIN Estilos globales section About us--------- */
