@@ -27,7 +27,7 @@ body {
 }
 
 h1,
-h2 {
+h2, h3 {
     text-align: center;
 }
 
@@ -39,6 +39,11 @@ h2 {
 .nav-link:hover {
     color: yellow !important;
 }
+
+ul {
+    list-style-type: none; 
+    padding-left: 0; 
+  }
 
 
 .products-section,

@@ -1,0 +1,11 @@
+.corre {
+  margin: 0;
+  text-align: center; 
+}
+
+.imagenGimnasio {
+  border: 5px solid black; 
+  border-radius: 10px; 
+  width: 100%; 
+  max-width: 500px; 
+}
