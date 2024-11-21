@@ -1,19 +1,23 @@
-// pages/cart.js
+// src/pages/cart.js
 import React, { useEffect, useReducer } from "react";
 import { shoppingInitialState } from "@/reducer/shoppingInitialState";
 import { shoppingReducer } from "@/reducer/shoppingReducer";
-import CartItem from "../components/CartItem";
 import axios from "axios";
+import CardSection from "../components/CardSection"; // Asegúrate de importar CardSection
 import { TYPES } from "@/actions/actions";
+import { useShoppingCart } from "../context/ShoppingCartContext"; // Importa el hook
 
 const CartPage = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { cart } = state;
 
+  // Usar el hook de carrito para acceder a addToCart
+  const { addToCart } = useShoppingCart(); // Aquí está la función addToCart del contexto
+
   const ENDPOINTS = {
     products: "http://localhost:5000/products",
-    cart: "http://localhost:5000/cart"
-  }
+    cart: "http://localhost:5000/cart",
+  };
 
   const updateState = async () => {
     try {
@@ -22,8 +26,8 @@ const CartPage = () => {
         type: TYPES.READ_STATE,
         payload: {
           products: [],
-          cart: responseCart.data
-        }
+          cart: responseCart.data,
+        },
       });
     } catch (error) {
       console.error("Error fetching cart:", error);
@@ -33,29 +37,6 @@ const CartPage = () => {
   useEffect(() => {
     updateState();
   }, []);
-
-  const deleteFromCart = async (id, all = false) => {
-    try {
-      const item = cart.find((item) => item.id === id);
-
-      if (all) {
-        await axios.delete(`${ENDPOINTS.cart}/${id}`);
-      } else {
-        if (item && item.quantity > 1) {
-          await axios.put(`${ENDPOINTS.cart}/${id}`, {
-            ...item,
-            quantity: item.quantity - 1
-          });
-        } else {
-          await axios.delete(`${ENDPOINTS.cart}/${id}`);
-        }
-      }
-
-      updateState();
-    } catch (error) {
-      console.error("Error deleting from cart:", error);
-    }
-  };
 
   const clearCart = async () => {
     try {
@@ -76,9 +57,8 @@ const CartPage = () => {
     <div>
       <h1>Carrito de Compras</h1>
       <div className="box">
-        {cart.map((item) => (
-          <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart} />
-        ))}
+        <h2>Productos Disponibles</h2>
+        <CardSection products={cart} addToCart={addToCart} /> {/* Aquí pasa addToCart al CardSection */}
       </div>
       <button onClick={clearCart}>Limpiar Carrito</button>
     </div>

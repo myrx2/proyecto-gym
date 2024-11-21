@@ -1,19 +1,18 @@
-// pages/products.js
 import React, { useEffect, useReducer } from "react";
 import { shoppingInitialState } from "@/reducer/shoppingInitialState";
 import { shoppingReducer } from "@/reducer/shoppingReducer";
-import { TYPES } from "@/actions/actions";
-import Product from "../components/Product";
 import axios from "axios";
+import CardSection from "../components/CardSection"; // Asegúrate de importar CardSection
+import { TYPES } from "@/actions/actions";
 
 const ProductsPage = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
-  const { products } = state;
+  const { products, cart } = state;
 
   const ENDPOINTS = {
     products: "http://localhost:5000/products",
-    cart: "http://localhost:5000/cart"
-  }
+    cart: "http://localhost:5000/cart",
+  };
 
   const updateState = async () => {
     try {
@@ -22,8 +21,8 @@ const ProductsPage = () => {
         type: TYPES.READ_STATE,
         payload: {
           products: responseProducts.data,
-          cart: [] // Asegúrate de no modificar el carrito aquí
-        }
+          cart: [], // Asegúrate de no modificar el carrito aquí
+        },
       });
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -34,14 +33,23 @@ const ProductsPage = () => {
     updateState();
   }, []);
 
-  const addToCart = async (id) => {
+  const addToCart = async (product) => {
     try {
-      const response = await axios.get(`${ENDPOINTS.products}/${id}`);
-      const product = response.data;
+      // Verificar si el producto ya existe en el carrito
+      const existingProduct = cart.find((item) => item.id === product.id);
 
-      await axios.post(ENDPOINTS.cart, { ...product, quantity: 1 });
+      if (existingProduct) {
+        // Si el producto ya está en el carrito, actualizar la cantidad
+        await axios.put(`${ENDPOINTS.cart}/${existingProduct.id}`, {
+          ...existingProduct,
+          quantity: existingProduct.quantity + 1,
+        });
+      } else {
+        // Si no existe, agregar al carrito
+        await axios.post(ENDPOINTS.cart, { ...product, quantity: 1 });
+      }
 
-      // Actualiza el estado del carrito (lo puedes hacer llamando a updateState() o usando un contexto)
+      updateState(); // Actualizar el estado del carrito después de agregar un producto
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -50,11 +58,7 @@ const ProductsPage = () => {
   return (
     <div>
       <h1>Productos</h1>
-      <div className="box grid-responsive">
-        {products.map((product) => (
-          <Product key={product.id} product={product} addToCart={addToCart} />
-        ))}
-      </div>
+      <CardSection products={products} addToCart={addToCart} />
     </div>
   );
 };
