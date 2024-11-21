@@ -1,5 +1,6 @@
 import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
+import ProfesSection from '../sections/Profes.Section';
 import ProductsSection from '../sections/ProductsSection'; 
 import ContactSection from '../sections/ContactSection';
 import styles from '../styles/index.module.css';
@@ -15,6 +16,10 @@ export default function Home () {
 
                 <section className={styles['section']}>
                     <AboutSection />
+                </section>
+
+                <section className={styles['section']}>
+                    <ProfesSection/>
                 </section>
 
                 <section className={styles['section']}>
