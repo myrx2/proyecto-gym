@@ -19,7 +19,8 @@ export default function AboutSection() {
       </ul>
       <div> style= {{
         borderBotton:'10px solid black',
-        margin: auto
+     
+        margin: 0
       }}
      
         <img src="/images/cinta.jpg" alt="Imagen del Gimnasio" />
