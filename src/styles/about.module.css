@@ -1,7 +1,14 @@
 .corre {
-    borderBotton:'10px solid black';
-    margin: 0;
-    text-align: center; 
-    left:100px;
-  }
  
+  margin: 0;
+  text-align: center; 
+  left: 100px;
+}
+
+.imagenGimnasio {
+  border: 5px solid black; 
+  border-radius: 10px; 
+  width: 100%; 
+  max-width: 500px; 
+}
+
