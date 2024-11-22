@@ -32,12 +32,12 @@ const Card = ({ title = "Producto", description, price, image, product, addToCar
 };
 
 // Componente CardSection que contiene todas las tarjetas
-const CardSection = ({ products, addToCart }) => {
+const CardSection = ({ products = [], addToCart }) => {
   return (
     <div className={styles.imageContainer}>
       <h1>Productos Destacados</h1>
       <div className={styles.grid}>
-        {products.length > 0 ? (
+        {products && Array.isArray(products) && products.length > 0 ? (
           products.map((product) => (
             <Card key={product.id} {...product} product={product} addToCart={addToCart} />
           ))

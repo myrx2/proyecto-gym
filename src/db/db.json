@@ -113,14 +113,5 @@
       "image": "/images/img16.jpg"
     }
   ],
-  "cart": [
-    {
-      "id": "2",
-      "title": "Remera Deportiva",
-      "description": "Remera ideal para entrenamiento fresca y comoda.",
-      "price": 10000,
-      "image": "/images/img2.jpg",
-      "quantity": 1
-    }
-  ]
+  "cart": []
 }
