@@ -1,21 +1,15 @@
-// src/pages/cart.js
 import React, { useEffect, useReducer } from "react";
-import { shoppingInitialState } from "@/reducer/shoppingInitialState";
-import { shoppingReducer } from "@/reducer/shoppingReducer";
 import axios from "axios";
-import CardSection from "../components/CardSection"; // Asegúrate de importar CardSection
+import { shoppingReducer } from "@/reducer/shoppingReducer";
+import { shoppingInitialState } from "@/reducer/shoppingInitialState";
 import { TYPES } from "@/actions/actions";
-import { useShoppingCart } from "../context/ShoppingCartContext"; // Importa el hook
+import CartItem from "../components/CartItem";
 
 const CartPage = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { cart } = state;
 
-  // Usar el hook de carrito para acceder a addToCart
-  const { addToCart } = useShoppingCart(); // Aquí está la función addToCart del contexto
-
   const ENDPOINTS = {
-    products: "http://localhost:5000/products",
     cart: "http://localhost:5000/cart",
   };
 
@@ -25,7 +19,7 @@ const CartPage = () => {
       dispatch({
         type: TYPES.READ_STATE,
         payload: {
-          products: [],
+          products: [], // Los productos no los necesitas aquí, solo el carrito
           cart: responseCart.data,
         },
       });
@@ -38,16 +32,35 @@ const CartPage = () => {
     updateState();
   }, []);
 
+  const deleteFromCart = async (id, all = false) => {
+    try {
+      if (all) {
+        // Eliminar el producto completo del carrito
+        await axios.delete(`${ENDPOINTS.cart}/${id}`);
+      } else {
+        // Disminuir la cantidad del producto en el carrito
+        const itemToDelete = cart.find((item) => item.id === id);
+        if (itemToDelete.quantity > 1) {
+          await axios.put(`${ENDPOINTS.cart}/${id}`, {
+            ...itemToDelete,
+            quantity: itemToDelete.quantity - 1,
+          });
+        } else {
+          await axios.delete(`${ENDPOINTS.cart}/${id}`);
+        }
+      }
+      updateState(); // Actualizar el estado después de eliminar
+    } catch (error) {
+      console.error("Error deleting from cart:", error);
+    }
+  };
+
   const clearCart = async () => {
     try {
-      const cartItems = await axios.get(ENDPOINTS.cart);
-      const cartIds = cartItems.data.map((item) => item.id);
-
-      for (let id of cartIds) {
-        await axios.delete(`${ENDPOINTS.cart}/${id}`);
+      for (let item of cart) {
+        await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
       }
-
-      updateState();
+      updateState(); // Limpiar carrito
     } catch (error) {
       console.error("Error clearing the cart:", error);
     }
@@ -56,11 +69,18 @@ const CartPage = () => {
   return (
     <div>
       <h1>Carrito de Compras</h1>
-      <div className="box">
-        <h2>Productos Disponibles</h2>
-        <CardSection products={cart} addToCart={addToCart} /> {/* Aquí pasa addToCart al CardSection */}
-      </div>
-      <button onClick={clearCart}>Limpiar Carrito</button>
+      {cart.length === 0 ? (
+        <p>No hay productos en el carrito</p>
+      ) : (
+        cart.map((item) => (
+          <CartItem
+            key={item.id}
+            item={item}
+            deleteFromCart={deleteFromCart}
+          />
+        ))
+      )}
+      <button onClick={clearCart}>Limpiar carrito</button>
     </div>
   );
 };

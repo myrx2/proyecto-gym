@@ -1,9 +1,14 @@
 import React from 'react';
 import PlanCard from '../components/PlanCard';
-import planData from '../utils/planData';
 import CardSection from '../components/CardSection';
+import planData from '../utils/planData'; // Datos de los planes
+import productData from '../db/db.json'; // Importar db.json directamente
 
 const ProductsSection = () => {
+  const addToCart = (product) => {
+    console.log('Producto agregado al carrito:', product);
+  };
+
   return (
     <>
       <section className="products-section">
@@ -17,7 +22,7 @@ const ProductsSection = () => {
           />
         ))}
       </section>
-      <CardSection />
+      <CardSection products={productData.products} addToCart={addToCart} />
     </>
   );
 };

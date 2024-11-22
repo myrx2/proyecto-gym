@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer } from "react";
-import { shoppingInitialState } from "@/reducer/shoppingInitialState";
-import { shoppingReducer } from "@/reducer/shoppingReducer";
 import axios from "axios";
-import CardSection from "../components/CardSection"; // Asegúrate de importar CardSection
+import { shoppingReducer } from "@/reducer/shoppingReducer";
+import { shoppingInitialState } from "@/reducer/shoppingInitialState";
 import { TYPES } from "@/actions/actions";
+import CardSection from "../components/CardSection";
 
 const ProductsPage = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
@@ -17,15 +17,17 @@ const ProductsPage = () => {
   const updateState = async () => {
     try {
       const responseProducts = await axios.get(ENDPOINTS.products);
+      const responseCart = await axios.get(ENDPOINTS.cart);
+
       dispatch({
         type: TYPES.READ_STATE,
         payload: {
           products: responseProducts.data,
-          cart: [], // Asegúrate de no modificar el carrito aquí
+          cart: responseCart.data,
         },
       });
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error fetching state:", error);
     }
   };
 
@@ -35,21 +37,18 @@ const ProductsPage = () => {
 
   const addToCart = async (product) => {
     try {
-      // Verificar si el producto ya existe en el carrito
       const existingProduct = cart.find((item) => item.id === product.id);
 
       if (existingProduct) {
-        // Si el producto ya está en el carrito, actualizar la cantidad
         await axios.put(`${ENDPOINTS.cart}/${existingProduct.id}`, {
           ...existingProduct,
           quantity: existingProduct.quantity + 1,
         });
       } else {
-        // Si no existe, agregar al carrito
         await axios.post(ENDPOINTS.cart, { ...product, quantity: 1 });
       }
 
-      updateState(); // Actualizar el estado del carrito después de agregar un producto
+      updateState();
     } catch (error) {
       console.error("Error adding to cart:", error);
     }

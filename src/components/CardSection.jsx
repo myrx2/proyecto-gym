@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/CardSection.module.css";
 
 // Componente Card para cada producto
