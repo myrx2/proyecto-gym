@@ -2,7 +2,7 @@ import { TYPES } from "@/actions/actions";
 
 export const shoppingReducer = (state, action) => {
   switch (action.type) {
-    // Leer el estado inicial
+
     case TYPES.READ_STATE:
       return {
         ...state,
@@ -10,7 +10,6 @@ export const shoppingReducer = (state, action) => {
         products: action.payload.products,
       };
 
-    // Agregar un producto al carrito
     case TYPES.ADD_TO_CART: {
       const newItem = state.products.find(
         (product) => product.id === action.payload
@@ -37,7 +36,7 @@ export const shoppingReducer = (state, action) => {
       };
     }
 
-    // Resto de las acciones
+ 
     case TYPES.REMOVE_ONE_ITEM: {
       const productToRemove = state.cart.find(
         (item) => item.id === action.payload

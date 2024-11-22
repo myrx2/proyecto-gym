@@ -19,7 +19,7 @@ const CartPage = () => {
       dispatch({
         type: TYPES.READ_STATE,
         payload: {
-          products: [], // Los productos no los necesitas aquí, solo el carrito
+          products: [], 
           cart: responseCart.data,
         },
       });
@@ -35,10 +35,10 @@ const CartPage = () => {
   const deleteFromCart = async (id, all = false) => {
     try {
       if (all) {
-        // Eliminar el producto completo del carrito
+        
         await axios.delete(`${ENDPOINTS.cart}/${id}`);
       } else {
-        // Disminuir la cantidad del producto en el carrito
+        
         const itemToDelete = cart.find((item) => item.id === id);
         if (itemToDelete.quantity > 1) {
           await axios.put(`${ENDPOINTS.cart}/${id}`, {
@@ -49,7 +49,7 @@ const CartPage = () => {
           await axios.delete(`${ENDPOINTS.cart}/${id}`);
         }
       }
-      updateState(); // Actualizar el estado después de eliminar
+      updateState(); 
     } catch (error) {
       console.error("Error deleting from cart:", error);
     }
@@ -60,7 +60,7 @@ const CartPage = () => {
       for (let item of cart) {
         await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
       }
-      updateState(); // Limpiar carrito
+      updateState(); 
     } catch (error) {
       console.error("Error clearing the cart:", error);
     }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/CardSection.module.css";
 
-// Componente Card para cada producto
 const Card = ({ title = "Producto", description, price, image, product, addToCart }) => {
   const [liked, setLiked] = useState(false);
 
@@ -22,7 +21,7 @@ const Card = ({ title = "Producto", description, price, image, product, addToCar
         <p className={styles.price}>${price}</p>
         <button
           className={styles.buyButton}
-          onClick={() => addToCart(product)} // Agregar al carrito
+          onClick={() => addToCart(product)} 
         >
           Comprar
         </button>
@@ -31,7 +30,7 @@ const Card = ({ title = "Producto", description, price, image, product, addToCar
   );
 };
 
-// Componente CardSection que contiene todas las tarjetas
+
 const CardSection = ({ products = [], addToCart }) => {
   return (
     <div className={styles.imageContainer}>

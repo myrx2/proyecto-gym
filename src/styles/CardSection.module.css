@@ -1,4 +1,4 @@
-/* Contenedor principal */
+
 .imageContainer {
   display: flex;
   flex-direction: column; 
@@ -9,7 +9,7 @@
   margin-bottom: 3rem; 
 }
 
-/* Titulo */
+
 .title {
   text-align: center; 
   margin-bottom: 2.5rem; 
@@ -19,7 +19,7 @@
   padding: 0 1rem; 
 }
 
-/* Cuadricula de productos */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -32,7 +32,6 @@
 }
 
 
-/* Tarjeta individual */
 .card {
   background-color: #ffffff;
   border-radius: 12px;
@@ -46,13 +45,13 @@
   flex-direction: column;
 }
 
-/* Hover en tarjeta */
+
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor imagen */
+
 .imageContainerCard {
   position: relative;
   width: 100%;
@@ -62,7 +61,7 @@
   align-items: center;
 }
 
-/* Imagen */
+
 .card img {
   width: 100%;
   height: 100%;
@@ -70,7 +69,7 @@
   border-radius: 8px;
 }
 
-/* Boton Corazon */
+
 .card button.likeButton {
   position: absolute;
   top: 10px;
@@ -91,7 +90,7 @@
   color: red;
 }
 
-/* Contenido de la tarjeta */
+
 .cardContent {
   padding: 1rem;
 }
@@ -109,14 +108,14 @@
   margin-bottom: 15px;
 }
 
-/* Precio */
+
 .price {
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
 }
 
-/* Boton de compra */
+
 .card button.buyButton {
   background-color: #007bff;
   color: white;
@@ -136,6 +135,27 @@
 }
 
 .card button.buyButton:active {
+  transform: scale(0.98);
+}
+
+.card button.deleteButton {
+  background-color: red;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.card button.deleteButton:hover {
+  background-color: darkred;
+  transform: scale(1.05);
+}
+
+.card button.deleteButton:active {
   transform: scale(0.98);
 }
 
