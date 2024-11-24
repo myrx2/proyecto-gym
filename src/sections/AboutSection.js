@@ -16,7 +16,6 @@ export default function AboutSection() {
         <h4>    Buscamos ofrecerte un espacio donde puedas entrenar tu cuerpo y
             fortalecer tu mente, rodeado de una comunidad que te apoya.
          
-        
             Nos enfocamos en brindarte las mejores herramientas y la motivación
             necesaria para alcanzar tus objetivos, con un equipo de
             profesionales que te guiarán en cada paso del camino.
