@@ -9,7 +9,7 @@ export default function AboutSection() {
       <section className="sectionUs">
         <h2>Acerca de Nosotros</h2>
       <div className={styles.info}>
-        <h3>
+        <h3> 
           En <strong>Gym</strong>, nuestra misión es ayudarte a transformar tu
           vida a través del ejercicio
         </h3>

@@ -5,24 +5,22 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    max-width: 80%;
     margin: 0 auto;
-    padding: 0 6%; 
+    padding: 4% 6%; 
+    background-color:  #212529;
   }
 
   .card-back {
     margin-top: 20px;
   }
 
-  .title {
-    font-size: 2.1rem;
-    margin-bottom: 20px;
-  }
-
   .description {
+    color: white;
     font-size: 1.2rem;
     line-height: 1.8em;
     margin-bottom: 30px;
+    text-align: justify;
+    max-width: 80%; 
   } 
 
  .card-container {
@@ -40,5 +38,6 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
+    border-bottom-left-radius: 0;
  }
 

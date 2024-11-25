@@ -3,45 +3,45 @@ import styles from '../styles/contactSection.module.css';
 export default function ContactSection() {
     return (
       <section className={styles.contactSection}>
-         <h2 className={styles.title}>Contacto</h2>
+         <h2>Contacto</h2>
            
          {/* frase motivadora */}
          <p className= {styles.description}>
-            El camino hacia el éxito no es fácil, pero siempre vale la pena... 
+            El camino hacia el éxito no es fácil, pero siempre vale la pena!
             Recordá que los desafíos son lo que hacen la vida interesante, y VOS TAMBIÉN PODÉS!! 
-            EMPEZÁ HOY a transformar tu vida, tu cuerpo, tu estilo de vida! 
-            Completá con tus datos asi nos ponemos en contacto y te asesoramos para que empieces a transformar tu rutina!!
+            EMPEZÁ HOY a transformar tu cuerpo y tu estilo de vida! 
+            Completá con tus datos así nos ponemos en contacto y te asesoramos para que empieces a transformar tu rutina!!
          </p>
 
           {/* formu */}
         <div>
              <form className= {styles.formulario}>
                 <fieldset className={styles.contenido}>
-                   <label htmlFor='nombre'> Nombre: </label>
+                   <label htmlFor='nombre' className={styles.label} > Nombre: </label>
                    <input className={styles.input} type='text' name="nombre" id='nombre'>                
                    </input>
                 </fieldset>
           
                 <fieldset className={styles.contenido}>
-                   <label htmlFor='apellido'> Apellido: </label>
+                   <label htmlFor='apellido'className={styles.label}> Apellido: </label>
                    <input className={styles.input} type='text' name="apellido" id='apellido'>               
                    </input>
                 </fieldset>
 
                 <fieldset className={styles.contenido}>
-                   <label htmlFor='mail'> Email: </label>
-                   <input className={styles.email} type='email'name="mail" id='mail'>               
+                   <label htmlFor='mail'className={styles.label}> Email: </label>
+                   <input className={styles.input} type='email'name="mail" id='mail'>               
                    </input>
                 </fieldset>
 
                 <fieldset className={styles.contenido}>
-                   <label htmlFor='celu'> Celular: </label>
+                   <label htmlFor='celu'className={styles.label}> Celular: </label>
                    <input className={styles.input} type='tel' name="celu" id='celu'>               
                    </input>
                 </fieldset>
 
                 <fieldset className={styles.contenido}>
-                   <label htmlFor="select"> Elegir una opción:</label>
+                   <label htmlFor="select"className={styles.label}> Elegir una opción:</label>
                    <select className={styles.select}>
                       <option selected value="info">Info</option>
                       <option value="productos">Productos</option>
@@ -50,7 +50,7 @@ export default function ContactSection() {
                 </fieldset>
 
                 <div className={styles.textarea}>
-                   <label> Ingrese Aquí su Consulta: </label>
+                   <label className={styles.label}> Ingrese Aquí su Consulta: </label>
                    <textarea className={styles.input}> </textarea>
                 </div>
 
