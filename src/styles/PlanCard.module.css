@@ -1,44 +1,80 @@
+
+/* Contenedor general de cada tarjeta */
+.plan-card-container {
+  display: flex;
+  flex-direction: row; /* Asegúrate de que los elementos estén en una fila */
+  justify-content: center; 
+  gap: 10px;
+  margin: 10px;
+}
+
+/* Estilos principales de la tarjeta */
 .plan-card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #fff;
-    max-width: 300px;
-    margin: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible */
+  max-width: 300px; /* Establece un tamaño máximo para las tarjetas */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 10px; /* Espaciado entre las tarjetas */
+}
+
+/* Hover para la tarjeta */
+.plan-card:hover {
+  transform: translateY(-10px); /* Eleva la tarjeta ligeramente */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de profundidad */
+}
+
+/* Título */
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Descripción */
+.plan-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Precio */
+.plan-price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+/* Botón */
+.plan-button {
+  background-color: #f3c94b; /* Color amarillo */
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+}
+
+/* Hover para el botón */
+.plan-button:hover {
+  background-color: #d5a30d; /* Amarillo más oscuro cuando se pasa el cursor */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .plan-card {
+    width: 100%; /* Las tarjetas ocupan todo el ancho en pantallas más pequeñas */
+    margin-bottom: 20px; /* Espaciado entre las tarjetas */
   }
-  
-  .plan-title {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .plan-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 12px;
-  }
-  
-  .plan-price {
-    font-size: 1.4rem;
-    color: black;
-    margin-bottom: 16px;
-  }
-  
-  .plan-button {
-    background-color: yellow;
-    color: black;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .plan-button:hover {
-    transform: scale(1.1);
-    font-weight: bold; 
-  }
-  
-  
-  
+}

@@ -1,0 +1,48 @@
+/* CartPage.module.css */
+
+/* Estilos para la página del carrito */
+.cartPage {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Título del carrito */
+.cartTitle {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mensaje cuando el carrito está vacío */
+.cartEmptyMessage {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #666;
+}
+
+/* Estilo para la lista de artículos del carrito */
+.cartItemList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre cada producto */
+}
+
+/* Estilo para el botón de limpiar carrito */
+.clearCartButton {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto;
+  font-size: 1rem;
+}
+
+.clearCartButton:hover {
+  background-color: #cc0000;
+}

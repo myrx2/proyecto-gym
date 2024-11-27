@@ -1,0 +1,68 @@
+/* CartItem.module.css */
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cartItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cartItemName {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.cartItemPrice {
+  font-size: 1rem;
+  color: #555;
+}
+
+.cartItemQuantity {
+  font-size: 1rem;
+  color: #666;
+}
+
+.cartItemButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.deleteButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #cc0000;
+}
+
+.decreaseButton,
+.increaseButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.decreaseButton:hover,
+.increaseButton:hover {
+  background-color: #0056b3;
+}

@@ -1,19 +1,31 @@
 import React from "react";
-import styles from "../styles/CardSection.module.css"; 
+import styles from "../styles/CartItem.module.css";
+
 
 const CartItem = ({ item, deleteFromCart }) => {
   return (
-    <div className={styles.card}> 
-      <div className={styles.imageContainerCard}>
-        <img src={item.image} alt={item.name} className={styles.cardImage} />
+    <div className={styles.cartItem}>
+      <div className={styles.cartItemDetails}>
+        <span className={styles.cartItemName}>{item.name}</span>
+        <span className={styles.cartItemPrice}>${item.price}</span>
+        <span className={styles.cartItemQuantity}>Cantidad: {item.quantity}</span>
       </div>
-      <div className={styles.cardContent}>
-        <h4>{item.name}</h4>
-        <p>Cantidad: {item.quantity}</p>
-        <p>${item.price * item.quantity}</p>
+      <div className={styles.cartItemButtons}>
         <button
-          className={styles.deleteButton} 
-          onClick={() => deleteFromCart(item.id)} 
+          className={styles.decreaseButton}
+          onClick={() => deleteFromCart(item.id)}
+        >
+          -
+        </button>
+        <button
+          className={styles.increaseButton}
+          onClick={() => deleteFromCart(item.id, true)}
+        >
+          +
+        </button>
+        <button
+          className={styles.deleteButton}
+          onClick={() => deleteFromCart(item.id, true)}
         >
           Eliminar
         </button>
@@ -23,4 +35,3 @@ const CartItem = ({ item, deleteFromCart }) => {
 };
 
 export default CartItem;
- 

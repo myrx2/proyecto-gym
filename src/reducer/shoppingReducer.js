@@ -1,81 +1,90 @@
-import { TYPES } from "@/actions/actions";
+// shoppingReducer.js
+export const TYPES = {
+  READ_STATE: "READ_STATE",
+  ADD_TO_CART: "ADD_TO_CART",
+  REMOVE_ONE_ITEM: "REMOVE_ONE_ITEM",
+  REMOVE_ITEM: "REMOVE_ITEM",
+  CLEAR_CART: "CLEAR_CART",
+  UPDATE_QUANTITY: "UPDATE_QUANTITY",
+};
+
+export const shoppingInitialState = {
+  products: [],
+  plans: [],
+  cart: [],
+};
 
 export const shoppingReducer = (state, action) => {
   switch (action.type) {
-
     case TYPES.READ_STATE:
       return {
         ...state,
-        cart: action.payload.cart,
         products: action.payload.products,
+        plans: action.payload.plans,
+        cart: action.payload.cart,
       };
 
-    case TYPES.ADD_TO_CART: {
-      const newItem = state.products.find(
-        (product) => product.id === action.payload
+    case TYPES.ADD_TO_CART:
+      const itemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
       );
 
-      if (!newItem) return state;
-
-      const itemInCart = state.cart.find((item) => item.id === newItem.id);
-
-      if (itemInCart) {
+      if (itemIndex >= 0) {
+        // If item exists, increase quantity
+        const updatedCart = [...state.cart];
+        updatedCart[itemIndex].quantity += 1;
+        return { ...state, cart: updatedCart };
+      } else {
+        // If item doesn't exist, add to cart with quantity 1
         return {
           ...state,
-          cart: state.cart.map((item) =>
-            item.id === itemInCart.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
+          cart: [...state.cart, { ...action.payload, quantity: 1 }],
         };
       }
 
-      return {
-        ...state,
-        cart: [...state.cart, { ...newItem, quantity: 1 }],
-      };
-    }
-
- 
-    case TYPES.REMOVE_ONE_ITEM: {
-      const productToRemove = state.cart.find(
-        (item) => item.id === action.payload
+    case TYPES.REMOVE_ONE_ITEM:
+      const cartItemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
       );
 
-      if (!productToRemove) return state;
+      if (cartItemIndex >= 0) {
+        const item = state.cart[cartItemIndex];
+        const updatedCart = [...state.cart];
 
-      if (productToRemove.quantity > 1) {
-        return {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === action.payload
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          ),
-        };
+        if (item.quantity === 1) {
+          updatedCart.splice(cartItemIndex, 1);
+        } else {
+          updatedCart[cartItemIndex].quantity -= 1;
+        }
+
+        return { ...state, cart: updatedCart };
       }
 
+      return state;
+
+    case TYPES.REMOVE_ITEM:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
       };
-    }
-
-    case TYPES.UPDATE_QUANTITY: {
-      if (action.payload.quantity <= 0) return state;
-
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: action.payload.quantity }
-            : item
-        ),
-      };
-    }
 
     case TYPES.CLEAR_CART:
-      return { ...state, cart: [] };
+      return {
+        ...state,
+        cart: [],
+      };
+
+    case TYPES.UPDATE_QUANTITY:
+      const { id, quantity } = action.payload;
+      const cartUpdateIndex = state.cart.findIndex((item) => item.id === id);
+
+      if (cartUpdateIndex >= 0) {
+        const updatedCart = [...state.cart];
+        updatedCart[cartUpdateIndex].quantity = quantity;
+        return { ...state, cart: updatedCart };
+      }
+
+      return state;
 
     default:
       return state;

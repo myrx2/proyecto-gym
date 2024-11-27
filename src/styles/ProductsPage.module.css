@@ -1,0 +1,97 @@
+/* Contenedor general */
+.container {
+    width: 100%;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+  
+  /* Título */
+  .h1 {
+    text-align: center;
+    color: #f3c94b; /* Amarillo */
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+  }
+  
+  /* Contenedor de planes */
+  .plan-container {
+    display: flex; /* Flexbox para organizar los planes en fila */
+    flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente fila si no caben */
+    gap: 20px; /* Espaciado entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas en el contenedor */
+    margin-bottom: 40px;
+  }
+  
+  /* Tarjetas de planes */
+  .plan-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    max-width: 300px; /* Tamaño máximo */
+    width: calc(33.33% - 20px); /* Ajuste dinámico para tres columnas */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    transition: transform 0.3s ease; /* Efecto hover */
+    flex: 1 1 calc(33.33% - 20px); /* Flex para permitir ajuste dinámico */
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-10px); /* Efecto hover */
+  }
+  
+  /* Título de la tarjeta */
+  .plan-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  /* Descripción */
+  .plan-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  
+  /* Precio */
+  .plan-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 16px;
+  }
+  
+  /* Botón */
+  .plan-button {
+    background-color: #f3c94b; /* Amarillo */
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease; /* Efecto hover */
+  }
+  
+  .plan-button:hover {
+    background-color: #d5a30d; /* Amarillo oscuro */
+  }
+  
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .plan-container {
+      flex-direction: column; /* Cambia a una columna en pantallas pequeñas */
+      align-items: center;
+    }
+    .plan-card {
+      width: 100%; /* Las tarjetas ocuparán todo el ancho */
+      margin-bottom: 20px; /* Espaciado adicional entre tarjetas */
+    }
+  }
+  

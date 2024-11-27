@@ -113,29 +113,39 @@
       "image": "/images/img16.jpg"
     }
   ],
-  "cart": [
+  "plans": [
     {
-      "id": "4",
-      "title": "Proteina",
-      "description": "La proteina Universal es la mejor del mercado.",
-      "price": 30000,
-      "image": "/images/img4.jpg",
-      "quantity": 1
+      "id": "1",
+      "title": "Plan Básico",
+      "description": "Acceso a las funciones básicas del gimnasio.",
+      "price": 2000
     },
     {
       "id": "2",
-      "title": "Remera Deportiva",
-      "description": "Remera ideal para entrenamiento fresca y comoda.",
-      "price": 10000,
-      "image": "/images/img2.jpg",
-      "quantity": 1
+      "title": "Plan Avanzado",
+      "description": "Acceso completo a todas las instalaciones y clases.",
+      "price": 4000
     },
     {
       "id": "3",
-      "title": "Creatina",
-      "description": "Creatina Monohidrato marca Gentech.",
-      "price": 20000,
-      "image": "/images/img3.jpg",
+      "title": "Plan Premium",
+      "description": "Acceso Full y entrenamiento personalizado.",
+      "price": 6000
+    }
+  ],
+  "cart": [
+    {
+      "id": "2",
+      "title": "Plan Avanzado",
+      "description": "Acceso completo a todas las instalaciones y clases.",
+      "price": 4000,
+      "quantity": 1
+    },
+    {
+      "id": "1",
+      "title": "Plan Básico",
+      "description": "Acceso a las funciones básicas del gimnasio.",
+      "price": 2000,
       "quantity": 1
     }
   ]
