@@ -23,3 +23,4 @@ const CartItem = ({ item, deleteFromCart }) => {
 };
 
 export default CartItem;
+ 
