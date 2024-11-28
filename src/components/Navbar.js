@@ -52,11 +52,11 @@ export default function Navbar() {
             <li className="nav-item">
               <Link href="/contact" className="nav-link text-white" onClick={handleNavClick}>
                 Contacto
-              </Link>
+                </Link>
             </li>
             <li className="nav-item">
               <Link href="/cart" className="nav-link text-white" onClick={handleNavClick}>
-                Carrito
+                <i className="fas fa-shopping-cart"></i>
               </Link>
             </li>
           </ul>

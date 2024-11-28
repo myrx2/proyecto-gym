@@ -30,12 +30,12 @@ export const shoppingReducer = (state, action) => {
       );
 
       if (itemIndex >= 0) {
-        // If item exists, increase quantity
+       
         const updatedCart = [...state.cart];
         updatedCart[itemIndex].quantity += 1;
         return { ...state, cart: updatedCart };
       } else {
-        // If item doesn't exist, add to cart with quantity 1
+       
         return {
           ...state,
           cart: [...state.cart, { ...action.payload, quantity: 1 }],

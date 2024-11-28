@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "../styles/CartItem.module.css";
 
-
-const CartItem = ({ item, deleteFromCart }) => {
+const CartItem = ({ item, addToCart, deleteFromCart }) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemDetails}>
-        <span className={styles.cartItemName}>{item.name}</span>
-        <span className={styles.cartItemPrice}>${item.price}</span>
+        <span className={styles.cartItemName}>{item.title}</span> {/* Aquí debería ser item.title, no item.name */}
+        <span className={styles.cartItemPrice}>
+          ${item.totalPrice || item.price * item.quantity}
+        </span>
         <span className={styles.cartItemQuantity}>Cantidad: {item.quantity}</span>
       </div>
       <div className={styles.cartItemButtons}>
@@ -19,7 +20,7 @@ const CartItem = ({ item, deleteFromCart }) => {
         </button>
         <button
           className={styles.increaseButton}
-          onClick={() => deleteFromCart(item.id, true)}
+          onClick={() => addToCart(item)}
         >
           +
         </button>

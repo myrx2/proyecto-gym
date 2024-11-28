@@ -1,8 +1,8 @@
 import React from 'react';
 import PlanCard from '../components/PlanCard';
 import CardSection from '../components/CardSection';
-import planData from '../utils/planData'; // Datos de los planes
-import productData from '../db/db.json'; // Importar db.json directamente
+import planData from '../utils/planData'; 
+import productData from '../db/db.json'; 
 
 const ProductsSection = () => {
   const addToCart = (product) => {
