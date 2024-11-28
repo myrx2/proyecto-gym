@@ -1,4 +1,3 @@
-// shoppingReducer.js
 export const TYPES = {
   READ_STATE: "READ_STATE",
   ADD_TO_CART: "ADD_TO_CART",
@@ -30,15 +29,14 @@ export const shoppingReducer = (state, action) => {
       );
 
       if (itemIndex >= 0) {
-       
         const updatedCart = [...state.cart];
         updatedCart[itemIndex].quantity += 1;
+        updatedCart[itemIndex].totalPrice = updatedCart[itemIndex].quantity * updatedCart[itemIndex].price;
         return { ...state, cart: updatedCart };
       } else {
-       
         return {
           ...state,
-          cart: [...state.cart, { ...action.payload, quantity: 1 }],
+          cart: [...state.cart, { ...action.payload, quantity: 1 }], // Agrega el nuevo producto al carrito
         };
       }
 
@@ -51,10 +49,12 @@ export const shoppingReducer = (state, action) => {
         const item = state.cart[cartItemIndex];
         const updatedCart = [...state.cart];
 
+        // Si la cantidad es 1, eliminamos el artículo. Si es mayor a 1, simplemente la reducimos en 1
         if (item.quantity === 1) {
           updatedCart.splice(cartItemIndex, 1);
         } else {
           updatedCart[cartItemIndex].quantity -= 1;
+          updatedCart[cartItemIndex].totalPrice = updatedCart[cartItemIndex].quantity * updatedCart[cartItemIndex].price;
         }
 
         return { ...state, cart: updatedCart };
@@ -65,13 +65,13 @@ export const shoppingReducer = (state, action) => {
     case TYPES.REMOVE_ITEM:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload.id),
+        cart: state.cart.filter((item) => item.id !== action.payload.id), // Eliminar un solo artículo
       };
 
     case TYPES.CLEAR_CART:
       return {
         ...state,
-        cart: [],
+        cart: [], // Vaciamos el carrito
       };
 
     case TYPES.UPDATE_QUANTITY:
@@ -81,6 +81,7 @@ export const shoppingReducer = (state, action) => {
       if (cartUpdateIndex >= 0) {
         const updatedCart = [...state.cart];
         updatedCart[cartUpdateIndex].quantity = quantity;
+        updatedCart[cartUpdateIndex].totalPrice = quantity * updatedCart[cartUpdateIndex].price;
         return { ...state, cart: updatedCart };
       }
 

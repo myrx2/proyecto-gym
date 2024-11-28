@@ -1,62 +1,42 @@
-.cartPage {
+.cartContainer {
+  text-align: center;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.cartTitle {
-  font-size: 2rem;
-  color: #333;
-  text-align: center;
+.cartItems {
   margin-bottom: 20px;
 }
 
-/* Mensaje cuando el carrito está vacío */
-.cartEmptyMessage {
-  font-size: 1.2rem;
-  text-align: center;
-  color: #666;
-}
-
-/* Estilo para la lista de artículos del carrito */
-.cartItemList {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Espacio entre cada producto */
-}
-
-/* Estilo para el botón de limpiar carrito */
-.clearCartButton {
-  background-color: #ff4d4d;
-  color: white;
+.checkoutButton, .clearCartButton {
+  background-color: greenyellow; /* Color de fondo */
+  color: white; /* Texto blanco */
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;
-  margin: 20px auto;
-  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 10px; /* Espaciado entre botones */
+}
+
+.checkoutButton:hover, .clearCartButton:hover {
+  background-color: #ff7f00; /* Hover de color más oscuro */
+  transform: scale(1.05); /* Le da un pequeño efecto de aumento */
+}
+
+.checkoutButton:focus, .clearCartButton:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Sombra cuando el botón es enfocado */
+}
+
+.cartIcon, .trashIcon {
+  margin-right: 10px; /* Espaciado entre el icono y el texto */
+}
+
+.clearCartButton {
+  background-color: #e74c3c; /* Color de fondo para Vaciar carrito */
 }
 
 .clearCartButton:hover {
-  background-color: #cc0000;
-}
-
-/* Estilo para el botón de comprar (similar al de limpiar carrito) */
-.buyButton {
-  background-color: #4CAF50; /* Color verde similar al estilo del botón */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;
-  margin: 20px auto;
-  font-size: 1rem;
-}
-
-.buyButton:hover {
-  background-color: #45a049; /* Efecto de hover similar al de limpiar carrito */
+  background-color: #c0392b; /* Hover de color más oscuro para Vaciar carrito */
 }

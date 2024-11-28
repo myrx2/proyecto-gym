@@ -1,3 +1,4 @@
+// ProductsPage.js
 import React, { useEffect, useReducer } from "react";
 import axios from "axios";
 import { shoppingReducer, shoppingInitialState, TYPES } from "@/reducer/shoppingReducer";
@@ -50,16 +51,27 @@ const ProductsPage = () => {
         await axios.post(ENDPOINTS.cart, { ...item, quantity: 1 });
       }
 
-      updateState();
+      updateState(); // Actualiza el estado después de la operación
     } catch (error) {
       console.error("Error adding to cart:", error);
+    }
+  };
+
+  const clearCart = async () => {
+    try {
+      for (let item of cart) {
+        await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
+      }
+      updateState();
+    } catch (error) {
+      console.error("Error clearing the cart:", error);
     }
   };
 
   return (
     <div>
       <h1>Planes</h1>
-      <div className="plan-card-container"> {/* Contenedor con flexbox */}
+      <div className="plan-card-container">
         {plans && plans.length > 0
           ? plans.map((plan) => (
               <PlanCard
@@ -77,6 +89,8 @@ const ProductsPage = () => {
       <div>
         <CardSection products={products} addToCart={addToCart} />
       </div>
+
+      <button onClick={clearCart}>Limpiar carrito</button>
     </div>
   );
 };

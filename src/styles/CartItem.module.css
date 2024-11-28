@@ -1,67 +1,74 @@
-
+/* Estilos para cada ítem del carrito */
 .cartItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo claro para cada ítem */
+  border: 1px solid #ddd; /* Borde gris claro */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin-bottom: 1rem; /* Espacio entre ítems */
+  width: 100%; /* Asegura que cada ítem ocupe todo el ancho disponible */
+  max-width: 800px;
+  margin: 0 auto; /* Centra el ítem */
 }
 
 .cartItemDetails {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 5px; /* Espacio entre los detalles del ítem */
 }
 
 .cartItemName {
   font-size: 1.2rem;
-  color: #333;
+  color: #333; /* Color oscuro para el nombre */
 }
 
 .cartItemPrice {
   font-size: 1rem;
-  color: #555;
+  color: #555; /* Gris para el precio */
 }
 
 .cartItemQuantity {
   font-size: 1rem;
-  color: #666;
+  color: #666; /* Gris claro para la cantidad */
 }
 
 .cartItemButtons {
   display: flex;
-  gap: 10px;
+  gap: 10px; /* Espacio entre los botones */
 }
 
-.deleteButton {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.deleteButton:hover {
-  background-color: #cc0000;
-}
-
+/* Estilos para los botones de aumentar/restar/eliminar */
 .decreaseButton,
 .increaseButton {
-  background-color: #007bff;
+  background-color: #007bff; /* Azul para los botones de aumentar/restar */
   color: white;
   border: none;
   padding: 8px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 1.1rem; /* Tamaño de fuente más grande */
 }
 
 .decreaseButton:hover,
 .increaseButton:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Azul más oscuro en hover */
+}
+
+.deleteButton {
+  background-color: #e74c3c; /* Rojo para el botón de eliminar */
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem; /* Tamaño de fuente más grande */
+}
+
+.deleteButton:hover {
+  background-color: #c0392b; /* Rojo más oscuro en hover */
 }

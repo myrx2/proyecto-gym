@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../styles/CardSection.module.css";
 
 const CardSection = ({ products = [], addToCart }) => {
-
   const [likedProducts, setLikedProducts] = useState({});
 
   const toggleLike = (productId) => {
@@ -38,7 +37,7 @@ const CardSection = ({ products = [], addToCart }) => {
                 <p className={styles.price}>${product.price}</p>
                 <button
                   className={styles.buyButton}
-                  onClick={() => addToCart(product)}
+                  onClick={() => addToCart(product)} // Llamada a addToCart para agregar el producto
                 >
                   Comprar
                 </button>
