@@ -1,4 +1,4 @@
-/* Estilos para cada ítem del carrito */
+/* Contenedor principal para el ítem del carrito */
 .cartItem {
   display: flex;
   justify-content: space-between;
@@ -14,43 +14,58 @@
   margin: 0 auto; /* Centra el ítem */
 }
 
+/* Detalles del ítem en el carrito (nombre, precio, cantidad) */
 .cartItemDetails {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Espacio entre los detalles del ítem */
+  gap: 10px; /* Espacio entre los detalles del ítem */
+  align-items: flex-start; /* Alineación a la izquierda para todos los detalles */
+  margin-right: auto; /* Evita que los detalles se extiendan innecesariamente */
 }
 
+/* Nombre del producto en el carrito */
 .cartItemName {
   font-size: 1.2rem;
   color: #333; /* Color oscuro para el nombre */
+  font-weight: bold; /* Resalta el nombre */
+  margin: 0; /* Elimina cualquier margen por defecto */
 }
 
+/* Precio del producto en el carrito */
 .cartItemPrice {
   font-size: 1rem;
   color: #555; /* Gris para el precio */
+  margin: 0; /* Elimina cualquier margen por defecto */
 }
 
+/* Cantidad del producto en el carrito */
 .cartItemQuantity {
   font-size: 1rem;
   color: #666; /* Gris claro para la cantidad */
+  margin: 0; /* Elimina cualquier margen por defecto */
 }
 
+/* Contenedor de los botones (aumentar, restar, eliminar) */
 .cartItemButtons {
   display: flex;
   gap: 10px; /* Espacio entre los botones */
+  align-items: center; /* Alinea los botones verticalmente */
 }
 
-/* Estilos para los botones de aumentar/restar/eliminar */
+/* Estilos para los botones de aumentar y restar */
 .decreaseButton,
 .increaseButton {
   background-color: #007bff; /* Azul para los botones de aumentar/restar */
   color: white;
   border: none;
-  padding: 8px;
+  padding: 8px 12px; /* Espaciado interno de los botones */
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 1.1rem; /* Tamaño de fuente más grande */
+  display: flex;
+  align-items: center; /* Centrado del texto */
+  justify-content: center; /* Centrado del texto */
 }
 
 .decreaseButton:hover,
@@ -58,11 +73,12 @@
   background-color: #0056b3; /* Azul más oscuro en hover */
 }
 
+/* Estilos para el botón de eliminar */
 .deleteButton {
   background-color: #e74c3c; /* Rojo para el botón de eliminar */
   color: white;
   border: none;
-  padding: 8px;
+  padding: 8px 12px; /* Espaciado interno de los botones */
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;

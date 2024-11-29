@@ -1,4 +1,3 @@
-// PlanCard.js
 import React from 'react';
 import styles from '../styles/PlanCard.module.css';
 
@@ -18,4 +17,3 @@ const PlanCard = ({ title, description, price, onAcquire }) => {
 };
 
 export default PlanCard;
-

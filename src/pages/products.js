@@ -1,4 +1,3 @@
-// ProductsPage.js
 import React, { useEffect, useReducer } from "react";
 import axios from "axios";
 import { shoppingReducer, shoppingInitialState, TYPES } from "@/reducer/shoppingReducer";
@@ -39,30 +38,49 @@ const ProductsPage = () => {
   }, []);
 
   const addToCart = async (item) => {
-    try {
-      const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-
-      if (existingItem) {
-        await axios.put(`${ENDPOINTS.cart}/${existingItem.id}`, {
-          ...existingItem,
-          quantity: existingItem.quantity + 1,
+    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+  
+    if (existingItem) {
+      // Actualizar cantidad en el estado y backend
+      const updatedQuantity = existingItem.quantity + 1;
+  
+      dispatch({
+        type: TYPES.UPDATE_QUANTITY,
+        payload: { id: existingItem.id, quantity: updatedQuantity },
+      });
+  
+      // Actualizar cantidad en el backend
+      try {
+        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, {
+          quantity: updatedQuantity,
         });
-      } else {
-        await axios.post(ENDPOINTS.cart, { ...item, quantity: 1 });
+      } catch (error) {
+        console.error("Error updating item quantity:", error);
       }
-
-      updateState(); // Actualiza el estado después de la operación
-    } catch (error) {
-      console.error("Error adding to cart:", error);
+    } else {
+      // Agregar nuevo producto al carrito en el estado y backend
+      const newItem = { ...item, quantity: 1 };
+  
+      dispatch({
+        type: TYPES.ADD_TO_CART,
+        payload: newItem,
+      });
+  
+      try {
+        await axios.post(ENDPOINTS.cart, newItem);
+      } catch (error) {
+        console.error("Error adding item to cart:", error);
+      }
     }
   };
+  
 
   const clearCart = async () => {
     try {
       for (let item of cart) {
         await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
       }
-      updateState();
+      dispatch({ type: TYPES.CLEAR_CART });
     } catch (error) {
       console.error("Error clearing the cart:", error);
     }

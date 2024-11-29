@@ -32,55 +32,71 @@ const CartPage = () => {
   }, []);
 
   const addToCart = async (item) => {
-    try {
-      const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-
-      if (existingItem) {
-        const newQuantity = existingItem.quantity + 1;
-        await axios.put(`${ENDPOINTS.cart}/${existingItem.id}`, {
-          ...existingItem,
-          quantity: newQuantity,
-          totalPrice: newQuantity * existingItem.price,
+    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+  
+    if (existingItem) {
+      // Actualizar cantidad en el estado y backend
+      const updatedQuantity = existingItem.quantity + 1;
+  
+      dispatch({
+        type: TYPES.UPDATE_QUANTITY,
+        payload: { id: existingItem.id, quantity: updatedQuantity },
+      });
+  
+      // Actualizar cantidad en el backend
+      try {
+        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, {
+          quantity: updatedQuantity,
         });
-      } else {
-        await axios.post(ENDPOINTS.cart, {
-          ...item,
-          quantity: 1,
-        });
+      } catch (error) {
+        console.error("Error updating item quantity:", error);
       }
-      updateState();
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
+    } else {
+      // Agregar nuevo producto al carrito en el estado y backend
+      const newItem = { ...item, quantity: 1 };
+  
+      dispatch({
+        type: TYPES.ADD_TO_CART,
+        payload: newItem,
+      });
+  
+      try {
+        await axios.post(ENDPOINTS.cart, newItem);
+      } catch (error) {
+        console.error("Error adding item to cart:", error);
+      }
     }
   };
+  
+  
 
-  const removeFromCart = async (id) => {
-    try {
-      await axios.delete(`${ENDPOINTS.cart}/${id}`);
-      updateState();
-    } catch (error) {
-      console.error("Error removing item from cart:", error);
-    }
+  const removeFromCart = (id) => {
+    dispatch({
+      type: TYPES.REMOVE_ITEM,
+      payload: { id },
+    });
+
+    axios.delete(`${ENDPOINTS.cart}/${id}`);
   };
 
-  const decreaseItemQuantity = async (id) => {
+  const decreaseItemQuantity = (id) => {
     const itemToUpdate = cart.find((item) => item.id === id);
 
     if (itemToUpdate) {
       const updatedQuantity = itemToUpdate.quantity - 1;
       if (updatedQuantity > 0) {
-        try {
-          await axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
-            ...itemToUpdate,
-            quantity: updatedQuantity,
-            totalPrice: updatedQuantity * itemToUpdate.price,
-          });
-          updateState();
-        } catch (error) {
-          console.error("Error decreasing item quantity:", error);
-        }
+        dispatch({
+          type: TYPES.UPDATE_QUANTITY,
+          payload: { id: itemToUpdate.id, quantity: updatedQuantity },
+        });
+
+        axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
+          ...itemToUpdate,
+          quantity: updatedQuantity,
+          totalPrice: updatedQuantity * itemToUpdate.price,
+        });
       } else {
-        removeFromCart(id); // Si la cantidad es 1, eliminamos el producto
+        removeFromCart(id);
       }
     }
   };
@@ -89,8 +105,8 @@ const CartPage = () => {
     try {
       for (let item of cart) {
         await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
+        dispatch({ type: TYPES.REMOVE_ITEM, payload: { id: item.id } });
       }
-      updateState();
       setPurchaseCompleted(true);
     } catch (error) {
       console.error("Error during checkout:", error);
@@ -102,7 +118,7 @@ const CartPage = () => {
       for (let item of cart) {
         await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
       }
-      updateState(); // Refrescar después de eliminar todos los productos
+      dispatch({ type: TYPES.CLEAR_CART });
     } catch (error) {
       console.error("Error clearing cart:", error);
     }

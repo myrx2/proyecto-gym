@@ -133,13 +133,5 @@
       "price": 6000
     }
   ],
-  "cart": [
-    {
-      "id": "1",
-      "title": "Plan Básico",
-      "description": "Acceso a las funciones básicas del gimnasio.",
-      "price": 2000,
-      "quantity": 1
-    }
-  ]
+  "cart": []
 }

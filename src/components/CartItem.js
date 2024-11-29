@@ -1,15 +1,22 @@
 import React from "react";
 import styles from "../styles/CartItem.module.css";
 
-const CartItem = ({ item, addToCart, removeFromCart, decreaseItemQuantity }) => {
+const CartItem = ({
+  item,
+  addToCart,
+  removeFromCart,
+  decreaseItemQuantity,
+}) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemDetails}>
-        <span className={styles.cartItemName}>{item.title}</span> {/* Asegúrate de que sea item.title */}
+        <span className={styles.cartItemName}>{item.title}</span>
         <span className={styles.cartItemPrice}>
           ${item.totalPrice || item.price * item.quantity}
         </span>
-        <span className={styles.cartItemQuantity}>Cantidad: {item.quantity}</span>
+        <span className={styles.cartItemQuantity}>
+          Cantidad: {item.quantity}
+        </span>
       </div>
       <div className={styles.cartItemButtons}>
         <button
@@ -20,10 +27,11 @@ const CartItem = ({ item, addToCart, removeFromCart, decreaseItemQuantity }) => 
         </button>
         <button
           className={styles.increaseButton}
-          onClick={() => addToCart(item)} // Llama a addToCart para agregar más
+          onClick={() => addToCart({ ...item, quantity: 1 })} // Evita que el objeto enviado cause problemas
         >
           +
         </button>
+
         <button
           className={styles.deleteButton}
           onClick={() => removeFromCart(item.id)} // Llama a removeFromCart para eliminar el producto completamente
