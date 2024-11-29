@@ -21,20 +21,20 @@ const CartItem = ({
       <div className={styles.cartItemButtons}>
         <button
           className={styles.decreaseButton}
-          onClick={() => decreaseItemQuantity(item.id)} // Llama a decreaseItemQuantity para restar de a uno
+          onClick={() => decreaseItemQuantity(item.id)} 
         >
           -
         </button>
         <button
           className={styles.increaseButton}
-          onClick={() => addToCart({ ...item, quantity: 1 })} // Evita que el objeto enviado cause problemas
+          onClick={() => addToCart({ ...item, quantity: 1 })} 
         >
           +
         </button>
 
         <button
           className={styles.deleteButton}
-          onClick={() => removeFromCart(item.id)} // Llama a removeFromCart para eliminar el producto completamente
+          onClick={() => removeFromCart(item.id)} 
         >
           Eliminar
         </button>

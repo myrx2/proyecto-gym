@@ -41,6 +41,13 @@ h2 {
     color: yellow !important;
 }
 
+.plans-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
 .plan-card-container {
     display: flex;
     flex-wrap: wrap;

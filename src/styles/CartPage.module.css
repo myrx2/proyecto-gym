@@ -8,35 +8,35 @@
 }
 
 .checkoutButton, .clearCartButton {
-  background-color: greenyellow; /* Color de fondo */
-  color: white; /* Texto blanco */
+  background-color: greenyellow; 
+  color: white; 
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin: 10px; /* Espaciado entre botones */
+  margin: 10px; 
 }
 
 .checkoutButton:hover, .clearCartButton:hover {
-  background-color: #ff7f00; /* Hover de color más oscuro */
-  transform: scale(1.05); /* Le da un pequeño efecto de aumento */
+  background-color: #ff7f00; 
+  transform: scale(1.05); 
 }
 
 .checkoutButton:focus, .clearCartButton:focus {
   outline: none;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Sombra cuando el botón es enfocado */
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); 
 }
 
 .cartIcon, .trashIcon {
-  margin-right: 10px; /* Espaciado entre el icono y el texto */
+  margin-right: 10px; 
 }
 
 .clearCartButton {
-  background-color: #e74c3c; /* Color de fondo para Vaciar carrito */
+  background-color: #e74c3c; 
 }
 
 .clearCartButton:hover {
-  background-color: #c0392b; /* Hover de color más oscuro para Vaciar carrito */
+  background-color: #c0392b; 
 }

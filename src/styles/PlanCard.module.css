@@ -1,34 +1,33 @@
 
-/* Contenedor general de cada tarjeta */
+
 .plan-card-container {
   display: flex;
-  flex-direction: row; /* Asegúrate de que los elementos estén en una fila */
+  flex-direction: row;
   justify-content: center; 
   gap: 10px;
   margin: 10px;
 }
 
-/* Estilos principales de la tarjeta */
 .plan-card {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  width: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible */
-  max-width: 300px; /* Establece un tamaño máximo para las tarjetas */
+  width: 100%; 
+  max-width: 300px; 
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px; /* Espaciado entre las tarjetas */
+  margin: 10px; 
 }
 
-/* Hover para la tarjeta */
+
 .plan-card:hover {
-  transform: translateY(-10px); /* Eleva la tarjeta ligeramente */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de profundidad */
+  transform: translateY(-10px); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Título */
+
 .plan-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -36,7 +35,7 @@
   margin-bottom: 8px;
 }
 
-/* Descripción */
+
 .plan-description {
   font-size: 1rem;
   color: #666;
@@ -44,7 +43,7 @@
   line-height: 1.5;
 }
 
-/* Precio */
+
 .plan-price {
   font-size: 1.4rem;
   font-weight: bold;
@@ -52,9 +51,9 @@
   margin-bottom: 16px;
 }
 
-/* Botón */
+
 .plan-button {
-  background-color: #f3c94b; /* Color amarillo */
+  background-color: #f3c94b; 
   color: #000;
   padding: 12px 24px;
   border: none;
@@ -63,18 +62,18 @@
   font-weight: bold;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
-  width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+  width: 100%; 
 }
 
-/* Hover para el botón */
+
 .plan-button:hover {
-  background-color: #d5a30d; /* Amarillo más oscuro cuando se pasa el cursor */
+  background-color: #d5a30d; 
 }
 
-/* Media Query para pantallas pequeñas */
+
 @media (max-width: 768px) {
   .plan-card {
-    width: 100%; /* Las tarjetas ocupan todo el ancho en pantallas más pequeñas */
-    margin-bottom: 20px; /* Espaciado entre las tarjetas */
+    width: 100%; 
+    margin-bottom: 20px; 
   }
 }

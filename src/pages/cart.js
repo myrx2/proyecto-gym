@@ -1,126 +1,20 @@
-import React, { useState, useEffect, useReducer } from "react";
-import axios from "axios";
-import { shoppingReducer, shoppingInitialState, TYPES } from "@/reducer/shoppingReducer";
+import React, { useState } from "react";
 import CartItem from "../components/CartItem";
+import useCart from "../hooks/useCart";
 import styles from "../styles/CartPage.module.css";
 
 const CartPage = () => {
-  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
-  const { cart } = state;
+  const { cart, addToCart, removeFromCart, decreaseItemQuantity, clearCart } = useCart();
   const [purchaseCompleted, setPurchaseCompleted] = useState(false);
-
-  const ENDPOINTS = {
-    cart: "http://localhost:5000/cart",
-  };
-
-  const updateState = async () => {
-    try {
-      const responseCart = await axios.get(ENDPOINTS.cart);
-      dispatch({
-        type: TYPES.READ_STATE,
-        payload: {
-          cart: responseCart.data,
-        },
-      });
-    } catch (error) {
-      console.error("Error fetching cart:", error);
-    }
-  };
-
-  useEffect(() => {
-    updateState();
-  }, []);
-
-  const addToCart = async (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-  
-    if (existingItem) {
-      // Actualizar cantidad en el estado y backend
-      const updatedQuantity = existingItem.quantity + 1;
-  
-      dispatch({
-        type: TYPES.UPDATE_QUANTITY,
-        payload: { id: existingItem.id, quantity: updatedQuantity },
-      });
-  
-      // Actualizar cantidad en el backend
-      try {
-        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, {
-          quantity: updatedQuantity,
-        });
-      } catch (error) {
-        console.error("Error updating item quantity:", error);
-      }
-    } else {
-      // Agregar nuevo producto al carrito en el estado y backend
-      const newItem = { ...item, quantity: 1 };
-  
-      dispatch({
-        type: TYPES.ADD_TO_CART,
-        payload: newItem,
-      });
-  
-      try {
-        await axios.post(ENDPOINTS.cart, newItem);
-      } catch (error) {
-        console.error("Error adding item to cart:", error);
-      }
-    }
-  };
-  
-  
-
-  const removeFromCart = (id) => {
-    dispatch({
-      type: TYPES.REMOVE_ITEM,
-      payload: { id },
-    });
-
-    axios.delete(`${ENDPOINTS.cart}/${id}`);
-  };
-
-  const decreaseItemQuantity = (id) => {
-    const itemToUpdate = cart.find((item) => item.id === id);
-
-    if (itemToUpdate) {
-      const updatedQuantity = itemToUpdate.quantity - 1;
-      if (updatedQuantity > 0) {
-        dispatch({
-          type: TYPES.UPDATE_QUANTITY,
-          payload: { id: itemToUpdate.id, quantity: updatedQuantity },
-        });
-
-        axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
-          ...itemToUpdate,
-          quantity: updatedQuantity,
-          totalPrice: updatedQuantity * itemToUpdate.price,
-        });
-      } else {
-        removeFromCart(id);
-      }
-    }
-  };
 
   const handleCheckout = async () => {
     try {
       for (let item of cart) {
-        await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
-        dispatch({ type: TYPES.REMOVE_ITEM, payload: { id: item.id } });
+        await removeFromCart(item.id);
       }
       setPurchaseCompleted(true);
     } catch (error) {
       console.error("Error during checkout:", error);
-    }
-  };
-
-  const clearCart = async () => {
-    try {
-      for (let item of cart) {
-        await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
-      }
-      dispatch({ type: TYPES.CLEAR_CART });
-    } catch (error) {
-      console.error("Error clearing cart:", error);
     }
   };
 

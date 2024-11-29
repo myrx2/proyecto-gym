@@ -1,90 +1,86 @@
-/* Contenedor principal para el ítem del carrito */
 .cartItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #f9f9f9; /* Fondo claro para cada ítem */
-  border: 1px solid #ddd; /* Borde gris claro */
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  margin-bottom: 1rem; /* Espacio entre ítems */
-  width: 100%; /* Asegura que cada ítem ocupe todo el ancho disponible */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 1rem; 
+  width: 100%; 
   max-width: 800px;
-  margin: 0 auto; /* Centra el ítem */
+  margin: 0 auto; 
 }
 
-/* Detalles del ítem en el carrito (nombre, precio, cantidad) */
 .cartItemDetails {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Espacio entre los detalles del ítem */
-  align-items: flex-start; /* Alineación a la izquierda para todos los detalles */
-  margin-right: auto; /* Evita que los detalles se extiendan innecesariamente */
+  gap: 10px; 
+  align-items: flex-start; 
+  margin-right: auto; 
 }
 
-/* Nombre del producto en el carrito */
 .cartItemName {
   font-size: 1.2rem;
-  color: #333; /* Color oscuro para el nombre */
-  font-weight: bold; /* Resalta el nombre */
-  margin: 0; /* Elimina cualquier margen por defecto */
+  color: #333; 
+  font-weight: bold; 
+  margin: 0; 
 }
 
-/* Precio del producto en el carrito */
+
 .cartItemPrice {
   font-size: 1rem;
-  color: #555; /* Gris para el precio */
-  margin: 0; /* Elimina cualquier margen por defecto */
+  color: #555; 
+  margin: 0; 
 }
 
-/* Cantidad del producto en el carrito */
+
 .cartItemQuantity {
   font-size: 1rem;
-  color: #666; /* Gris claro para la cantidad */
-  margin: 0; /* Elimina cualquier margen por defecto */
+  color: #666;
+  margin: 0; 
 }
 
-/* Contenedor de los botones (aumentar, restar, eliminar) */
+
 .cartItemButtons {
   display: flex;
-  gap: 10px; /* Espacio entre los botones */
-  align-items: center; /* Alinea los botones verticalmente */
+  gap: 10px;
+  align-items: center; 
 }
 
-/* Estilos para los botones de aumentar y restar */
+
 .decreaseButton,
 .increaseButton {
-  background-color: #007bff; /* Azul para los botones de aumentar/restar */
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px; /* Espaciado interno de los botones */
+  padding: 8px 12px; 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 1.1rem; /* Tamaño de fuente más grande */
+  font-size: 1.1rem; 
   display: flex;
-  align-items: center; /* Centrado del texto */
-  justify-content: center; /* Centrado del texto */
+  align-items: center; 
+  justify-content: center; 
 }
 
 .decreaseButton:hover,
 .increaseButton:hover {
-  background-color: #0056b3; /* Azul más oscuro en hover */
+  background-color: #0056b3; 
 }
 
-/* Estilos para el botón de eliminar */
 .deleteButton {
-  background-color: #e74c3c; /* Rojo para el botón de eliminar */
+  background-color: #e74c3c; 
   color: white;
   border: none;
-  padding: 8px 12px; /* Espaciado interno de los botones */
+  padding: 8px 12px; 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 1.1rem; /* Tamaño de fuente más grande */
+  font-size: 1.1rem; 
 }
 
 .deleteButton:hover {
-  background-color: #c0392b; /* Rojo más oscuro en hover */
+  background-color: #c0392b; 
 }

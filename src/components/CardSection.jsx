@@ -4,7 +4,6 @@ import styles from "../styles/CardSection.module.css";
 const CardSection = ({ products = [], addToCart }) => {
   const [likedProducts, setLikedProducts] = useState({});
 
-  // Alternar el estado de "like" para productos
   const toggleLike = (productId) => {
     setLikedProducts((prevLikes) => ({
       ...prevLikes,
@@ -40,7 +39,7 @@ const CardSection = ({ products = [], addToCart }) => {
                 <p className={styles.price}>${product.price}</p>
                 <button
                   className={styles.buyButton}
-                  onClick={() => addToCart(product)} // Conexión con el dispatch en ProductsPage
+                  onClick={() => addToCart(product)} 
                 >
                   Comprar
                 </button>
