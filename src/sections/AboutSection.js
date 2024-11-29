@@ -14,11 +14,15 @@ export default function AboutSection() {
           Somos Gym nuestra <strong>misión</strong> es brindarte un espacio donde no solo entrenes tu cuerpo, 
           sino que también cultives una mente y un espíritu fuerte. Creemos en el poder del movimiento para liberar 
           tu potencial físico y mental. Queremos que al cruzar nuestras puertas, te sientas motivado a alcanzar tus metas.
-
+        </p>
+       
+        <p>
           ¿Te imaginas ser más fuerte, más saludable y más seguro de ti mismo? 
           En Gym esa <strong>visión</strong> es nuestra realidad. Te ofreceremos más que solo máquinas y pesas;
            te proporcionaremos las herramientas, el conocimiento y la inspiración para que logres tus objetivos.
+        </p>
 
+        <p>
           Nuestra maquinaria de última generación te permitirá trabajar todos los grupos musculares de forma segura y 
           efectiva. Además, contamos con un staff de profesionales altamente capacitados que te brindarán la orientación y 
           el apoyo personalizado que necesitas para maximizar tus resultados. En Gym tenes todo lo que necesitas 
@@ -26,6 +30,7 @@ export default function AboutSection() {
 
 
         </p>
+        
       </div>       
 
         <div className={styles.corre}>
