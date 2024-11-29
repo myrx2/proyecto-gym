@@ -9,20 +9,23 @@ export default function AboutSection() {
       <section className="sectionUs">
         <h2>Acerca de Nosotros</h2>
       <div className={styles.info}>
-        <h3>
-          En <strong>Gym</strong>, nuestra misión es ayudarte a transformar tu
-          vida a través del ejercicio
-        </h3>
-        <h4>    Buscamos ofrecerte un espacio donde puedas entrenar tu cuerpo y
-            fortalecer tu mente, rodeado de una comunidad que te apoya.
-         
-            Nos enfocamos en brindarte las mejores herramientas y la motivación
-            necesaria para alcanzar tus objetivos, con un equipo de
-            profesionales que te guiarán en cada paso del camino.
+        <p>
         
-            Contamos con equipos de última tecnología para ofrecerte un
-            entrenamiento seguro y efectivo, adaptado a tus necesidades.
-        </h4>
+          Somos Gym nuestra <strong>misión</strong> es brindarte un espacio donde no solo entrenes tu cuerpo, 
+          sino que también cultives una mente y un espíritu fuerte. Creemos en el poder del movimiento para liberar 
+          tu potencial físico y mental. Queremos que al cruzar nuestras puertas, te sientas motivado a alcanzar tus metas.
+
+          ¿Te imaginas ser más fuerte, más saludable y más seguro de ti mismo? 
+          En Gym esa <strong>visión</strong> es nuestra realidad. Te ofreceremos más que solo máquinas y pesas;
+           te proporcionaremos las herramientas, el conocimiento y la inspiración para que logres tus objetivos.
+
+          Nuestra maquinaria de última generación te permitirá trabajar todos los grupos musculares de forma segura y 
+          efectiva. Además, contamos con un staff de profesionales altamente capacitados que te brindarán la orientación y 
+          el apoyo personalizado que necesitas para maximizar tus resultados. En Gym tenes todo lo que necesitas 
+          para alcanzar tus objetivos.
+
+
+        </p>
       </div>       
 
         <div className={styles.corre}>
