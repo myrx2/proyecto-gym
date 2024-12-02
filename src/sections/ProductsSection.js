@@ -1,25 +1,36 @@
 import React from 'react';
-import PlanCard from '../components/PlanCard';
-import planData from '../utils/planData';
-import CardSection from '../components/CardSection';
+import PlanCard from '../components/PlanCard'; // Asegúrate de que la ruta sea correcta
+import CardSection from '../components/CardSection'; // Asegúrate de que la ruta sea correcta
+import productData from '../db/db.json'; // Asegúrate de que la ruta sea correcta
 
 const ProductsSection = () => {
+  const addToCart = (product) => {
+    console.log('Producto agregado al carrito:', product);
+  };
+
   return (
     <>
-      <section className="products-section">
-        {planData.map((plan, index) => (
-          <PlanCard
-            key={index}
-            title={plan.title}
-            description={plan.description}
-            price={plan.price}
-            onAcquire={plan.onAcquire}
-          />
-        ))}
+      <section className="plans-section">
+        {productData.plans && productData.plans.length > 0 ? (
+          productData.plans.map((plan) => (
+            <PlanCard
+              key={plan.id}
+              title={plan.title}
+              description={plan.description}
+              price={plan.price}
+              onAcquire={() => alert(`${plan.title} adquirido!`)}
+            />
+          ))
+        ) : (
+          <p>Cargando planes...</p>
+        )}
       </section>
-      <CardSection />
+
+      <section className="products-section">
+        <CardSection products={productData.products} addToCart={addToCart} />
+      </section>
     </>
   );
 };
 
-export default ProductsSection;  // Cambio a exportación por defecto
+export default ProductsSection;

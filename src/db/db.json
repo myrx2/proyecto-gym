@@ -1,0 +1,137 @@
+{
+  "products": [
+    {
+      "id": "product-1",
+      "title": "Remera Deportiva",
+      "description": "Remera ideal para entrenamiento fresca y comoda.",
+      "price": 10000,
+      "image": "/images/img1.jpg"
+    },
+    {
+      "id": "product-2",
+      "title": "Remera Deportiva",
+      "description": "Remera ideal para entrenamiento fresca y comoda.",
+      "price": 10000,
+      "image": "/images/img2.jpg"
+    },
+    {
+      "id": "product-3",
+      "title": "Creatina",
+      "description": "Creatina Monohidrato marca Gentech.",
+      "price": 20000,
+      "image": "/images/img3.jpg"
+    },
+    {
+      "id": "product-4",
+      "title": "Proteina",
+      "description": "La proteina Universal es la mejor del mercado.",
+      "price": 30000,
+      "image": "/images/img4.jpg"
+    },
+    {
+      "id": "product-5",
+      "title": "Pantalon Jogging",
+      "description": "Pantalon flexible y comodo para cualquier deporte.",
+      "price": 12000,
+      "image": "/images/img5.jpg"
+    },
+    {
+      "id": "product-6",
+      "title": "Auriculares Inalambricos",
+      "description": "Auriculares con cancelacion de ruidos u bluetooth 5.0.",
+      "price": 18000,
+      "image": "/images/img6.jpg"
+    },
+    {
+      "id": "product-7",
+      "title": "Gorra Deportiva",
+      "description": "Gorra ligera y ajustable para actividades al aire libre.",
+      "price": 8000,
+      "image": "/images/img7.jpg"
+    },
+    {
+      "id": "product-8",
+      "title": "Pesas Ajustables",
+      "description": "Pesas ideales para entrenamientos en casa.",
+      "price": 25000,
+      "image": "/images/img8.jpg"
+    },
+    {
+      "id": "product-9",
+      "title": "Bicicleta de Montaña",
+      "description": "Bicicleta robusta para caminos exigentes.",
+      "price": 120000,
+      "image": "/images/img9.jpg"
+    },
+    {
+      "id": "product-10",
+      "title": "Guantes de entrenamiento",
+      "description": "Guantes antideslizantes para mejor agarre en el gimnasio.",
+      "price": 3500,
+      "image": "/images/img10.jpg"
+    },
+    {
+      "id": "product-11",
+      "title": "Barra Deportiva",
+      "description": "Barra deportiva a base de proteina.",
+      "price": 1500,
+      "image": "/images/img11.jpg"
+    },
+    {
+      "id": "product-12",
+      "title": "Barra Deportiva",
+      "description": "Barra deportiva a base de proteina sabor frutilla.",
+      "price": 1500,
+      "image": "/images/img12.jpg"
+    },
+    {
+      "id": "product-13",
+      "title": "Barra Deportiva",
+      "description": "Barra deportiva a base de proteina sabor chocolate.",
+      "price": 1500,
+      "image": "/images/img13.jpg"
+    },
+    {
+      "id": "product-14",
+      "title": "Zapatillas Deportiva",
+      "description": "Marca Rebook, el mejor agarre.",
+      "price": 30000,
+      "image": "/images/img14.jpg"
+    },
+    {
+      "id": "product-15",
+      "title": "Botella de agua",
+      "description": "Botella para agua en acero inoxidable.",
+      "price": 12000,
+      "image": "/images/img15.jpg"
+    },
+    {
+      "id": "product-16",
+      "title": "Mancuernas",
+      "description": "Mancuernas de alta calidad con revestimiento.",
+      "price": 20000,
+      "image": "/images/img16.jpg"
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-1",
+      "title": "Plan Básico",
+      "description": "Acceso a las funciones básicas del gimnasio.",
+      "price": 20000
+    },
+    {
+      "id": "plan-2",
+      "title": "Plan Avanzado",
+      "description": "Acceso completo a todas las instalaciones y clases.",
+      "price": 40000
+    },
+    {
+      "id": "plan-3",
+      "title": "Plan Premium",
+      "description": "Acceso Full y entrenamiento personalizado.",
+      "price": 60000
+    }
+  ],
+  "cart": []
+}
