@@ -1,20 +1,31 @@
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
 import Image from 'next/image';
+import useCart from '../hooks/useCart';
 
 export default function Navbar() {
   const [collapse, setCollapse] = useState(false);
+  const { cart } = useCart();
+
+  // Calculamos el número de productos únicos en el carrito
+  const totalQuantity = cart.reduce((acc, item) => {
+    // Solo contamos productos únicos por su id
+    if (!acc.includes(item.id)) {
+      acc.push(item.id);
+    }
+    return acc;
+  }, []).length;
 
   const handleNavClick = () => {
     setCollapse(false);
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
       <div className="container-fluid">
         <Link href="/" className="navbar-brand d-flex align-items-center" style={{ color: 'yellow' }}>
           <Image
-            src="/images/logo.png" 
+            src="/images/logo.png"
             alt="Logo del Gimnasio"
             width={50}
             height={50}
@@ -52,11 +63,30 @@ export default function Navbar() {
             <li className="nav-item">
               <Link href="/contact" className="nav-link text-white" onClick={handleNavClick}>
                 Contacto
-                </Link>
+              </Link>
             </li>
             <li className="nav-item">
               <Link href="/cart" className="nav-link text-white" onClick={handleNavClick}>
-                <i className="fas fa-shopping-cart"></i>
+                <div style={{ position: 'relative' }}>
+                  <i className="fas fa-shopping-cart"></i>
+                  {totalQuantity > 0 && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-5px',
+                        left: '10px',
+                        backgroundColor: 'yellow',
+                        borderRadius: '50%',
+                        padding: '0 5px',
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        color: 'black',
+                      }}
+                    >
+                      {totalQuantity}
+                    </span>
+                  )}
+                </div>
               </Link>
             </li>
           </ul>

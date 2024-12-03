@@ -3,27 +3,22 @@ import axios from "axios";
 import { shoppingReducer, shoppingInitialState, TYPES } from "@/reducer/shoppingReducer";
 
 const useCart = () => {
-  // useReducer maneja el estado del carrito utilizando un reducer.
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
 
   const { cart, products, plans } = state;
 
-  // Endpoints para realizar las solicitudes a la API.
   const ENDPOINTS = {
     products: "http://localhost:5000/products",
     plans: "http://localhost:5000/plans",
     cart: "http://localhost:5000/cart",
   };
 
-  // Función para cargar el estado inicial desde la API.
   const updateState = async () => {
     try {
-      // Solicitudes para obtener los datos de productos, planes y carrito.
       const responseProducts = await axios.get(ENDPOINTS.products);
       const responsePlans = await axios.get(ENDPOINTS.plans);
       const responseCart = await axios.get(ENDPOINTS.cart);
 
-      // Actualizar el estado con los datos obtenidos.
       dispatch({
         type: TYPES.READ_STATE,
         payload: {
@@ -37,18 +32,23 @@ const useCart = () => {
     }
   };
 
-  // useEffect para cargar los datos iniciales cuando se monta el componente.
+  // Cargar el estado inicial cuando el componente se monta
   useEffect(() => {
     updateState();
   }, []);
 
-  // Agregar un producto al carrito.
+  // Función para obtener el número total de productos únicos en el carrito
+  const getTotalQuantity = () => {
+    // Contar productos únicos en el carrito (sin importar la cantidad)
+    const uniqueProducts = new Set(cart.map(item => item.id));
+    return uniqueProducts.size; // Retorna la cantidad de productos únicos
+  };
+
+  // Función para agregar productos al carrito
   const addToCart = async (item) => {
-    // Verificar si el producto ya está en el carrito.
     const existingItem = cart.find((cartItem) => cartItem.id === item.id);
 
     if (existingItem) {
-      // Si ya existe, aumentar su cantidad.
       const updatedQuantity = existingItem.quantity + 1;
 
       dispatch({
@@ -56,16 +56,13 @@ const useCart = () => {
         payload: { id: existingItem.id, quantity: updatedQuantity },
       });
 
+      // Actualizar el carrito en el servidor
       try {
-        // Actualizar la cantidad en el servidor.
-        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, {
-          quantity: updatedQuantity,
-        });
+        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, { quantity: updatedQuantity });
       } catch (error) {
         console.error("Error updating item quantity:", error);
       }
     } else {
-      // Si no existe, agregarlo como un nuevo ítem.
       const newItem = { ...item, quantity: 1 };
 
       dispatch({
@@ -73,8 +70,8 @@ const useCart = () => {
         payload: newItem,
       });
 
+      // Guardar el nuevo ítem en el servidor
       try {
-        // Guardar el nuevo ítem en el servidor.
         await axios.post(ENDPOINTS.cart, newItem);
       } catch (error) {
         console.error("Error adding item to cart:", error);
@@ -82,16 +79,17 @@ const useCart = () => {
     }
   };
 
-  // Eliminar un producto del carrito.
+  // Función para eliminar un producto del carrito
   const removeFromCart = async (id) => {
-    dispatch({
-      type: TYPES.REMOVE_ITEM,
-      payload: { id },
-    });
-    await axios.delete(`${ENDPOINTS.cart}/${id}`);
+    dispatch({ type: TYPES.REMOVE_ITEM, payload: { id } });
+    try {
+      await axios.delete(`${ENDPOINTS.cart}/${id}`);
+    } catch (error) {
+      console.error("Error removing item:", error);
+    }
   };
 
-  // Reducir la cantidad de un producto en el carrito.
+  // Función para reducir la cantidad de un producto
   const decreaseItemQuantity = async (id) => {
     const itemToUpdate = cart.find((item) => item.id === id);
 
@@ -99,38 +97,45 @@ const useCart = () => {
       const updatedQuantity = itemToUpdate.quantity - 1;
 
       if (updatedQuantity > 0) {
-        // Si la cantidad es mayor a 0, actualizarla.
         dispatch({
           type: TYPES.UPDATE_QUANTITY,
           payload: { id: itemToUpdate.id, quantity: updatedQuantity },
         });
 
-        await axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
-          ...itemToUpdate,
-          quantity: updatedQuantity,
-          totalPrice: updatedQuantity * itemToUpdate.price,
-        });
+        try {
+          await axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
+            ...itemToUpdate,
+            quantity: updatedQuantity,
+            totalPrice: updatedQuantity * itemToUpdate.price,
+          });
+        } catch (error) {
+          console.error("Error updating item quantity:", error);
+        }
       } else {
-        // Si la cantidad llega a 0, eliminar el ítem.
         await removeFromCart(id);
       }
     }
   };
 
-  // Vaciar completamente el carrito.
   const clearCart = async () => {
     try {
-      for (let item of cart) {
-        // Eliminar cada ítem del carrito en el servidor.
-        await axios.delete(`${ENDPOINTS.cart}/${item.id}`);
-      }
-      dispatch({ type: TYPES.CLEAR_CART }); // Limpiar el carrito en el estado.
+      // Esperar a que todas las peticiones de eliminación se completen.
+      await Promise.all(cart.map((item) => axios.delete(`${ENDPOINTS.cart}/${item.id}`)));
+  
+      // Vaciar el carrito en el estado local.
+      dispatch({ type: TYPES.CLEAR_CART });
     } catch (error) {
       console.error("Error clearing cart:", error);
     }
   };
 
-  // Retornar las funciones y el estado necesario para usar el carrito.
+  // Sincronizar el estado del carrito en tiempo real sin tener que recargar
+  useEffect(() => {
+    if (cart.length > 0) {
+      updateState();  // Esto actualizará el carrito cuando se cambien los productos.
+    }
+  }, [cart]); // Este useEffect se ejecutará cuando el carrito cambie
+
   return {
     cart,
     products,
@@ -139,6 +144,7 @@ const useCart = () => {
     removeFromCart,
     decreaseItemQuantity,
     clearCart,
+    getTotalQuantity,
   };
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import PlanCard from '../components/PlanCard'; // Asegúrate de que la ruta sea correcta
-import CardSection from '../components/CardSection'; // Asegúrate de que la ruta sea correcta
-import productData from '../db/db.json'; // Asegúrate de que la ruta sea correcta
+import PlanCard from '../components/PlanCard';
+import CardSection from '../components/CardSection';
+import productData from '../db/db.json'; 
 
 const ProductsSection = () => {
   const addToCart = (product) => {
