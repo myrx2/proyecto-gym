@@ -2,21 +2,12 @@ import React from "react";
 import CardSection from "../components/CardSection";  
 import PlanCard from "../components/PlanCard";  
 import useCart from "../hooks/useCart";  
-import Swal from "sweetalert2";
+
 
 const ProductsPage = () => {
   const { plans, products, addToCart } = useCart();  // Usamos el hook `useCart` para obtener los planes, productos y la función `addToCart`.
 
-  const handleAddToCart = (item) => {
-    addToCart(item);  // Llama a la función `addToCart` para agregar el item al carrito.
-    Swal.fire({
-      title: '¡Producto agregado!',
-      text: `Has agregado ${item.title} al carrito.`,
-      icon: 'success',
-      confirmButtonText: 'Aceptar'
-    });
-  };
-  
+
   return (
     <div>
       <h1>Planes</h1>
