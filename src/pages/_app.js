@@ -1,3 +1,4 @@
+// src/pages/_app.js
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -17,7 +18,6 @@ export default function MyApp({ Component, pageProps }) {
       <Head>
         <title>Mi Gimnasio</title>
         <meta name="description" content="Bienvenido a nuestro gimnasio." />
-        
       </Head>
       <div className={styles.container}>
         <Header />

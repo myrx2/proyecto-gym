@@ -1,0 +1,139 @@
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 1rem; 
+  width: 100%; 
+  max-width: 800px;
+  margin: 0 auto; 
+}
+
+.cartItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  align-items: flex-start; 
+  margin-right: auto; 
+}
+
+.cartItemName {
+  font-size: 1.2rem;
+  color: #333; 
+  font-weight: bold; 
+  margin: 0; 
+}
+
+
+.cartItemPrice {
+  font-size: 1rem;
+  color: #555; 
+  margin: 0; 
+}
+
+
+.cartItemQuantity {
+  font-size: 1rem;
+  color: #666;
+  margin: 0; 
+}
+
+
+.cartItemButtons {
+  display: flex;
+  gap: 10px;
+  align-items: center; 
+}
+
+
+.decreaseButton,
+.increaseButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.decreaseButton:hover,
+.increaseButton:hover {
+  background-color: #0056b3; 
+}
+
+.deleteButton {
+  background-color: #e74c3c; 
+  color: white;
+  border: none;
+  padding: 8px 12px; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem; 
+}
+
+.deleteButton:hover {
+  background-color: #c0392b; 
+}
+
+@media (max-width: 768px) {
+  .cartItem {
+    padding: 15px;
+    margin-bottom: 1rem;
+  }
+
+  .cartItemName {
+    font-size: 1.1rem;
+  }
+
+  .cartItemPrice,
+  .cartItemQuantity {
+    font-size: 0.9rem;
+  }
+
+  .cartItemButtons {
+    gap: 8px;
+  }
+
+  .decreaseButton,
+  .increaseButton,
+  .deleteButton {
+    padding: 6px 10px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cartItem {
+    padding: 10px;
+  }
+
+  .cartItemName {
+    font-size: 1rem;
+  }
+
+  .cartItemPrice,
+  .cartItemQuantity {
+    font-size: 0.85rem;
+  }
+
+  .cartItemButtons {
+    gap: 6px;
+  }
+
+  .decreaseButton,
+  .increaseButton,
+  .deleteButton {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
+}

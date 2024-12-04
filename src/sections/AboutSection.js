@@ -17,8 +17,8 @@ export default function AboutSection() {
         </p>
        
         <p>
-          ¿Te imaginas ser más fuerte, más saludable y más seguro de ti mismo? 
-          En Gym esa <strong>visión</strong> es nuestra realidad. Te ofreceremos más que solo máquinas y pesas;
+          Nuestra <strong>visión</strong> es incentivar una comunidad saludable, promoviendo habitos de vida positivos
+           y fomentando la disciplina para un bienestar integral. Por ende, te ofreceremos más que solo máquinas y pesas;
            te proporcionaremos las herramientas, el conocimiento y la inspiración para que logres tus objetivos.
         </p>
 
@@ -30,7 +30,7 @@ export default function AboutSection() {
 
 
         </p>
-        
+
       </div>       
 
         <div className={styles.corre}>
