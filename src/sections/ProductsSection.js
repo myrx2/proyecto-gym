@@ -27,6 +27,7 @@ const ProductsSection = () => {
       </section>
 
       <section className="products-section">
+      <h2>Productos</h2>
         <CardSection products={productData.products} addToCart={addToCart} />
       </section>
     </>

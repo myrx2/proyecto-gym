@@ -1,20 +1,15 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import useCart from '../hooks/useCart';
+import useCart from '../hooks/useCart';  // Importa el hook useCart
 
 export default function Navbar() {
   const [collapse, setCollapse] = useState(false);
-  const { cart } = useCart();
 
-  // Calculamos el número de productos únicos en el carrito
-  const totalQuantity = cart.reduce((acc, item) => {
-    // Solo contamos productos únicos por su id
-    if (!acc.includes(item.id)) {
-      acc.push(item.id);
-    }
-    return acc;
-  }, []).length;
+  // Desestructuramos la función 'getTotalQuantity' que ahora está optimizada con useCallback
+  const { getTotalQuantity } = useCart(); 
+
+  const totalQuantity = getTotalQuantity(); // Calcula la cantidad total optimizada
 
   const handleNavClick = () => {
     setCollapse(false);
@@ -24,14 +19,8 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
       <div className="container-fluid">
         <Link href="/" className="navbar-brand d-flex align-items-center" style={{ color: 'yellow' }}>
-          <Image
-            src="/images/logo.png"
-            alt="Logo del Gimnasio"
-            width={50}
-            height={50}
-            className="me-2"
-          />
-          GYM
+          <Image src="/images/logo.png" alt="Logo del Gimnasio" width={50} height={50} className="me-2" />
+          CodeFit
         </Link>
         <button
           className="navbar-toggler"
@@ -46,24 +35,16 @@ export default function Navbar() {
         <div className={`collapse navbar-collapse ${collapse ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link href="/" className="nav-link text-white" onClick={handleNavClick}>
-                Inicio
-              </Link>
+              <Link href="/" className="nav-link text-white" onClick={handleNavClick}>Inicio</Link>
             </li>
             <li className="nav-item">
-              <Link href="/about" className="nav-link text-white" onClick={handleNavClick}>
-                Nosotros
-              </Link>
+              <Link href="/about" className="nav-link text-white" onClick={handleNavClick}>Nosotros</Link>
             </li>
             <li className="nav-item">
-              <Link href="/products" className="nav-link text-white" onClick={handleNavClick}>
-                Productos
-              </Link>
+              <Link href="/products" className="nav-link text-white" onClick={handleNavClick}>Productos</Link>
             </li>
             <li className="nav-item">
-              <Link href="/contact" className="nav-link text-white" onClick={handleNavClick}>
-                Contacto
-              </Link>
+              <Link href="/contact" className="nav-link text-white" onClick={handleNavClick}>Contacto</Link>
             </li>
             <li className="nav-item">
               <Link href="/cart" className="nav-link text-white" onClick={handleNavClick}>

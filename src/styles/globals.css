@@ -11,6 +11,7 @@ body {
     margin: 0;
     height: 100%;
     scroll-behavior: smooth;
+    padding-top: 75px; /* Igual a la altura de la barra */
 }
 
 .container {
@@ -23,13 +24,13 @@ body {
 
 .main {
     flex: 1;
-    padding: 20px 20px 0;
     width: 100%;
 }
 
 h1,
 h2, h3 {
     text-align: center;
+    padding-top: 10px;
 }
 
 

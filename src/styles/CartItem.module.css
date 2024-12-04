@@ -84,3 +84,56 @@
 .deleteButton:hover {
   background-color: #c0392b; 
 }
+
+@media (max-width: 768px) {
+  .cartItem {
+    padding: 15px;
+    margin-bottom: 1rem;
+  }
+
+  .cartItemName {
+    font-size: 1.1rem;
+  }
+
+  .cartItemPrice,
+  .cartItemQuantity {
+    font-size: 0.9rem;
+  }
+
+  .cartItemButtons {
+    gap: 8px;
+  }
+
+  .decreaseButton,
+  .increaseButton,
+  .deleteButton {
+    padding: 6px 10px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cartItem {
+    padding: 10px;
+  }
+
+  .cartItemName {
+    font-size: 1rem;
+  }
+
+  .cartItemPrice,
+  .cartItemQuantity {
+    font-size: 0.85rem;
+  }
+
+  .cartItemButtons {
+    gap: 6px;
+  }
+
+  .decreaseButton,
+  .increaseButton,
+  .deleteButton {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
+}

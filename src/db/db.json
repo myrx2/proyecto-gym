@@ -133,5 +133,13 @@
       "price": 60000
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "plan-2",
+      "title": "Plan Avanzado",
+      "description": "Acceso completo a todas las instalaciones y clases.",
+      "price": 40000,
+      "quantity": 1
+    }
+  ]
 }

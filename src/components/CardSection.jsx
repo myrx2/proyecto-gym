@@ -13,7 +13,6 @@ const CardSection = ({ products = [], addToCart }) => {
 
   return (
     <div className={styles.imageContainer}>
-      <h1>Productos Destacados</h1>
       <div className={styles.grid}>
         {products && products.length > 0 ? (
           products.map((product) => (
