@@ -39,13 +39,13 @@
     line-height: 1.6em;  /* Reducir el espacio entre líneas */
     width: 100%;  /* Hacer que ocupe el 100% del ancho disponible */
   }
-  
+
   .corre {
-    max-width: 20%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
+    max-width: 10%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
   }
 
   .imagenGimnasio {
-    max-width: 20%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
+    max-width: 10%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
   }
 }
 
