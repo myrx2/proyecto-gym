@@ -29,7 +29,7 @@ export default function ContactSection() {
                 </fieldset>
 
                 <fieldset className={styles.contenido}>
-                   <label htmlFor='mail'className={styles.label}> Email: </label>
+                   <label htmlFor='mail'className={styles.label}> Email :  </label>
                    <input className={styles.input} type='email'name="mail" id='mail'>               
                    </input>
                 </fieldset>
@@ -46,12 +46,13 @@ export default function ContactSection() {
                       <option selected value="info">Info</option>
                       <option value="productos">Productos</option>
                       <option  value="planes">Planes</option>
+                      <option  value="planes">Clases</option>
                    </select>
                 </fieldset>
 
                 <div className={styles.textarea}>
                    <label className={styles.label}> Ingrese Aquí su Consulta: </label>
-                   <textarea className={styles.input}> </textarea>
+                   <textarea className={styles.input} rows="5"> </textarea>
                 </div>
 
                 <button className={styles.button}> Enviar </button>
