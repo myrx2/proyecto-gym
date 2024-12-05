@@ -41,7 +41,7 @@
   }
 
   .imagenGimnasio {
-    max-width: 40%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
+    max-width: 20%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
   }
 }
 
