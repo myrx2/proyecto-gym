@@ -33,11 +33,13 @@
 .contenido {
   padding: 10px 20px;
   text-align: start;
+  display: flex;
+  justify-content: space-around;
 }
 
 .contenido >.input{
   text-align: end;
-  background-color: blueviolet; /*hay que alinear a la derecha*/
+  width: 70%; 
 }
 
 .textarea >.label {
