@@ -1,7 +1,8 @@
 /* Estilos generales (aplicados a todos los tamaños de pantalla) */
 .sectionUs {
   text-align: center;
-  margin: 20px auto;
+  margin-top: 20px;
+  margin:auto;
   padding: 20px;
 }
 
@@ -21,43 +22,45 @@
   margin: 0;
   text-align: center;
 }
-
-.imagenGimnasio {
+.corre img {
   border-radius: 10px;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
+  height: auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Media query para dispositivos móviles */
 @media (max-width: 576px) {
   .sectionUs {
-    padding: 10px;  /* Reducir el padding */
+    padding: 10px;
   }
 
   .info {
-    font-size: 1rem;  /* Reducir el tamaño de fuente */
-    line-height: 1.6em;  /* Reducir el espacio entre líneas */
-    width: 100%;  /* Hacer que ocupe el 100% del ancho disponible */
+    font-size: 1rem;  
+    line-height: 1.6em;  
+    width: 100%;  
   }
 
-  .imagenGimnasio {
-    max-width: 100%;  /* Asegurarse de que la imagen ocupe todo el ancho disponible */
+  .corre img {
+    max-width: 100%;  
   }
 }
 
 /* Media query para dispositivos de laptop (mayores a 1024px) */
 @media (min-width: 1024px) {
   .sectionUs {
-    padding: 40px;  /* Aumentar el padding */
+    padding: 40px; 
   }
 
   .info {
-    font-size: 1.5rem;  /* Aumentar el tamaño de fuente */
-    line-height: 2em;  /* Aumentar el espacio entre líneas */
-    width: 70%;  /* Ajustar el ancho de la información */
+    font-size: 1.5rem; 
+    line-height: 2em; 
+    width: 70%; 
   }
 
-  .imagenGimnasio {
-    max-width: 600px;  /* Aumentar el tamaño máximo de la imagen */
+  .corre img {
+    max-width: 600px; 
   }
 }

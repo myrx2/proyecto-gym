@@ -34,13 +34,13 @@
 
     .owl-carousel .item img {
         max-width: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 }
 
 @media (max-width: 480px) {
     .owl-carousel .item {
-        height: 120px;
+        height: 155px;
     }
 
     .owl-carousel .item img {
