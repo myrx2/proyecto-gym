@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2"; // Importa SweetAlert2
 import styles from "../styles/CardSection.module.css";
 
 const CardSection = ({ products = [], addToCart }) => {
@@ -9,6 +10,19 @@ const CardSection = ({ products = [], addToCart }) => {
       ...prevLikes,
       [productId]: !prevLikes[productId],
     }));
+  };
+
+  const handleAddToCart = (product) => {
+    // Llama a la función `addToCart` que viene como prop
+    addToCart(product);
+
+    // Muestra la alerta de éxito de SweetAlert2
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto añadido',
+      text: `El producto ${product.title} ha sido añadido al carrito.`,
+      confirmButtonText: 'Aceptar',
+    });
   };
 
   return (
@@ -38,7 +52,7 @@ const CardSection = ({ products = [], addToCart }) => {
                 <p className={styles.price}>${product.price}</p>
                 <button
                   className={styles.buyButton}
-                  onClick={() => addToCart(product)} 
+                  onClick={() => handleAddToCart(product)} // Usa la función modificada
                 >
                   Comprar
                 </button>

@@ -3,6 +3,7 @@ import PlanCard from '../components/PlanCard';
 import CardSection from '../components/CardSection';
 import productData from '../db/db.json'; 
 
+
 const ProductsSection = () => {
   const addToCart = (product) => {
     console.log('Producto agregado al carrito:', product);

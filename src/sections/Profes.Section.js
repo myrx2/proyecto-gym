@@ -10,7 +10,7 @@ export default function ProfesSection () {
                 <p className={styles.description}> Contamos con un Equipo de Profesionales de Primer Nivel 
                      capacitados para brindarte las clases más completas y   prácticas!! 
                     Todos nuestros Profes se perfeccionan  constantemente para traerte las últimas tendencias 
-                    y las mejores rutinas... ¡¡¡ No lo dudes y vení a entrenar con nosotros!!! 
+                    y las mejores rutinas... ¡¡¡No lo dudes y vení a entrenar con nosotros!!! 
                 </p>
             </section>
              {/* 1- toda la section de cards deberia de estar dentro de la section de arriba.

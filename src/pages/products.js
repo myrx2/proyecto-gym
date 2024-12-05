@@ -3,6 +3,7 @@ import CardSection from "../components/CardSection";
 import PlanCard from "../components/PlanCard";  
 import useCart from "../hooks/useCart";  
 
+
 const ProductsPage = () => {
   const { plans, products, addToCart } = useCart();  // Usamos el hook `useCart` para obtener los planes, productos y la función `addToCart`.
 
