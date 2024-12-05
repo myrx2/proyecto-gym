@@ -23,7 +23,6 @@ export default function Home () {
                 </section>
 
                 <section className={styles['section']}>
-                    <h2>Nuestros Planes</h2>
                     <ProductsSection />
                 </section>
 

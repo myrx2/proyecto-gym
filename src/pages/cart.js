@@ -4,7 +4,7 @@ import useCart from "../hooks/useCart";
 import styles from "../styles/CartPage.module.css";  
 
 const CartPage = () => {
-  const { cart, addToCart, removeFromCart, decreaseItemQuantity, clearCart } = useCart();  // Obtenemos el carrito y las funciones del hook `useCart`.
+  const { cart, addToCart, removeFromCart, decreaseItemQuantity, clearCart, getTotalPrice } = useCart();  // Obtenemos el carrito y las funciones del hook `useCart`.
   const [purchaseCompleted, setPurchaseCompleted] = useState(false);  // Estado local para gestionar si la compra fue completada.
 
   const handleCheckout = async () => {  // Función para procesar el checkout (compra).
@@ -36,12 +36,18 @@ const CartPage = () => {
               />
             ))}
           </div>
+
+          {/* Mostrar el total de los productos */}
+          <div className={styles.cartTotal}>
+            <h3>Total: ${getTotalPrice().toFixed(0)}</h3>
+          </div>
+
           <div className={styles.buttonsContainer}>
-            <button className={styles.checkoutButton} onClick={handleCheckout}>  {/* Botón para realizar el checkout. */}
+            <button className={styles.checkoutButton} onClick={handleCheckout}>
               <i className={`fas fa-shopping-cart ${styles.cartIcon}`}></i>
               Comprar ahora
             </button>
-            <button className={styles.clearCartButton} onClick={clearCart}>  {/* Botón para vaciar el carrito. */}
+            <button className={styles.clearCartButton} onClick={clearCart}>
               <i className={`fas fa-trash-alt ${styles.trashIcon}`}></i>
               Vaciar carrito
             </button>
@@ -54,4 +60,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;  
+export default CartPage;

@@ -3,27 +3,24 @@ import axios from "axios";
 import { shoppingReducer, shoppingInitialState, TYPES } from "@/reducer/shoppingReducer";
 
 const useCart = () => {
-  // Inicializa el estado con useReducer utilizando el reducer y el estado inicial
-  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
+  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);  // Usamos useReducer para manejar el estado del carrito.
 
-  const { cart, products, plans } = state;
+  const { cart, products, plans } = state;  // Desestructuramos el estado para obtener el carrito, productos y planes.
 
-  // Definición de los endpoints a los que se hará la solicitud para obtener productos, planes y el carrito
   const ENDPOINTS = {
-    products: "http://localhost:5000/products",
-    plans: "http://localhost:5000/plans",
-    cart: "http://localhost:5000/cart",
+    products: "http://localhost:5000/products",  // Endpoint para obtener los productos.
+    plans: "http://localhost:5000/plans",  // Endpoint para obtener los planes.
+    cart: "http://localhost:5000/cart",  // Endpoint para obtener el carrito.
   };
 
-  // Función para actualizar el estado con la información desde la API
+  // Función que actualiza el estado del carrito, productos y planes a partir de la API.
   const updateState = async () => {
     try {
-      // Realiza solicitudes GET a la API para obtener los productos, planes y carrito
-      const responseProducts = await axios.get(ENDPOINTS.products);
-      const responsePlans = await axios.get(ENDPOINTS.plans);
-      const responseCart = await axios.get(ENDPOINTS.cart);
+      const responseProducts = await axios.get(ENDPOINTS.products);  // Obtener productos.
+      const responsePlans = await axios.get(ENDPOINTS.plans);  // Obtener planes.
+      const responseCart = await axios.get(ENDPOINTS.cart);  // Obtener carrito.
 
-      // Despacha una acción para actualizar el estado con los datos obtenidos
+      // Despachamos una acción para actualizar el estado con los datos obtenidos.
       dispatch({
         type: TYPES.READ_STATE,
         payload: {
@@ -33,134 +30,129 @@ const useCart = () => {
         },
       });
     } catch (error) {
-      console.error("Error fetching state:", error);
+      console.error("Error fetching state:", error);  // Manejo de errores si falla la obtención de datos.
     }
   };
 
-  // useEffect que carga el estado inicial cuando el componente se monta
+  // useEffect para actualizar el estado cuando el componente se monte por primera vez.
   useEffect(() => {
-    updateState();
-  }, []); // Solo se ejecuta una vez cuando el componente se monta
+    updateState();  // Llamar a la función updateState cuando el componente se monta.
+  }, []);
 
-  // Función para obtener la cantidad total de productos únicos en el carrito
-  const getTotalQuantity = () => {
-    // Crea un Set para contar productos únicos basados en su ID
-    const uniqueProducts = new Set(cart.map(item => item.id));
-    return uniqueProducts.size; // Retorna la cantidad de productos únicos
+  // Función para calcular el total del carrito sumando el precio de todos los productos en el carrito.
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);  // Suma el precio de todos los ítems multiplicado por su cantidad.
   };
 
-  // Función para agregar productos al carrito
+  // Función para obtener la cantidad total de productos únicos en el carrito.
+  const getTotalQuantity = () => {
+    const uniqueProducts = new Set(cart.map(item => item.id));  // Usamos un Set para asegurarnos de contar productos únicos.
+    return uniqueProducts.size;  // Devuelve la cantidad de productos únicos.
+  };
+
+  // Función para añadir un producto al carrito.
   const addToCart = async (item) => {
-    // Verifica si el producto ya está en el carrito
-    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+    const existingItem = cart.find((cartItem) => cartItem.id === item.id);  // Verificar si el ítem ya está en el carrito.
 
     if (existingItem) {
-      // Si el producto ya está, incrementa su cantidad en 1
-      const updatedQuantity = existingItem.quantity + 1;
+      const updatedQuantity = existingItem.quantity + 1;  // Si el ítem existe, incrementamos la cantidad.
 
+      // Despachamos una acción para actualizar la cantidad del ítem en el carrito.
       dispatch({
         type: TYPES.UPDATE_QUANTITY,
         payload: { id: existingItem.id, quantity: updatedQuantity },
       });
 
-      // Actualiza el carrito en el servidor
       try {
-        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, { quantity: updatedQuantity });
+        await axios.patch(`${ENDPOINTS.cart}/${existingItem.id}`, { quantity: updatedQuantity });  // Actualizar la cantidad en la API.
       } catch (error) {
-        console.error("Error updating item quantity:", error);
+        console.error("Error updating item quantity:", error);  // Manejo de errores si falla la actualización.
       }
     } else {
-      // Si el producto no está en el carrito, lo agrega con una cantidad de 1
-      const newItem = { ...item, quantity: 1 };
+      const newItem = { ...item, quantity: 1 };  // Si el ítem no está en el carrito, lo añadimos con cantidad 1.
 
+      // Despachamos una acción para agregar el nuevo ítem al carrito.
       dispatch({
         type: TYPES.ADD_TO_CART,
         payload: newItem,
       });
 
-      // Agrega el nuevo ítem al carrito en el servidor
       try {
-        await axios.post(ENDPOINTS.cart, newItem);
+        await axios.post(ENDPOINTS.cart, newItem);  // Añadir el nuevo ítem en la API.
       } catch (error) {
-        console.error("Error adding item to cart:", error);
+        console.error("Error adding item to cart:", error);  // Manejo de errores si falla la adición.
       }
     }
   };
 
-  // Función para eliminar un producto del carrito
+  // Función para eliminar un ítem del carrito.
   const removeFromCart = async (id) => {
-    // Despacha una acción para eliminar el producto del carrito
-    dispatch({ type: TYPES.REMOVE_ITEM, payload: { id } });
-    
-    // Elimina el producto en el servidor
+    dispatch({ type: TYPES.REMOVE_ITEM, payload: { id } });  // Despachamos una acción para eliminar el ítem del carrito.
+
     try {
-      await axios.delete(`${ENDPOINTS.cart}/${id}`);
+      await axios.delete(`${ENDPOINTS.cart}/${id}`);  // Eliminamos el ítem en la API.
     } catch (error) {
-      console.error("Error removing item:", error);
+      console.error("Error removing item:", error);  
     }
   };
 
-  // Función para reducir la cantidad de un producto en el carrito
+  // Función para disminuir la cantidad de un ítem en el carrito.
   const decreaseItemQuantity = async (id) => {
-    // Encuentra el producto en el carrito
-    const itemToUpdate = cart.find((item) => item.id === id);
+    const itemToUpdate = cart.find((item) => item.id === id);  
 
     if (itemToUpdate) {
-      const updatedQuantity = itemToUpdate.quantity - 1;
+      const updatedQuantity = itemToUpdate.quantity - 1;  // Reducir la cantidad.
 
       if (updatedQuantity > 0) {
-        // Si la cantidad es mayor a 1, actualiza la cantidad en el estado y en el servidor
+        // Si la cantidad es mayor a 0, actualizamos la cantidad.
         dispatch({
           type: TYPES.UPDATE_QUANTITY,
           payload: { id: itemToUpdate.id, quantity: updatedQuantity },
         });
 
         try {
-          await axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {
+          await axios.put(`${ENDPOINTS.cart}/${itemToUpdate.id}`, {  // Actualizar la cantidad en la API.
             ...itemToUpdate,
             quantity: updatedQuantity,
-            totalPrice: updatedQuantity * itemToUpdate.price, // Actualiza el precio total del producto
+            totalPrice: updatedQuantity * itemToUpdate.price,
           });
         } catch (error) {
-          console.error("Error updating item quantity:", error);
+          console.error("Error updating item quantity:", error);  // Manejo de errores si falla la actualización.
         }
       } else {
-        // Si la cantidad llega a 0, elimina el producto del carrito
-        await removeFromCart(id);
+        await removeFromCart(id);  // Si la cantidad es 0 o menos, eliminamos el ítem del carrito.
       }
     }
   };
 
-  // Función para vaciar el carrito
+  // Función para vaciar el carrito.
   const clearCart = async () => {
     try {
-      // Elimina todos los productos del carrito en el servidor
+      // Usamos Promise.all para eliminar todos los ítems del carrito de la API en paralelo.
       await Promise.all(cart.map((item) => axios.delete(`${ENDPOINTS.cart}/${item.id}`)));
-  
-      // Vacía el carrito en el estado local
-      dispatch({ type: TYPES.CLEAR_CART });
+      dispatch({ type: TYPES.CLEAR_CART });  // Despachamos una acción para vaciar el carrito en el estado.
     } catch (error) {
-      console.error("Error clearing cart:", error);
+      console.error("Error clearing cart:", error);  // Manejo de errores si falla el vaciado.
     }
   };
 
-  // useEffect para sincronizar el estado del carrito cuando cambian los productos del carrito
+  // useEffect para actualizar el estado cuando cambie el carrito.
   useEffect(() => {
     if (cart.length > 0) {
-      updateState();  // Vuelve a actualizar el estado del carrito si cambian los productos
+      updateState();  // Actualizamos el estado cuando el carrito cambie.
     }
-  }, [cart]); // Este efecto se ejecutará cada vez que cambie el carrito
+  }, [cart]);
 
-  // Devuelve funciones y datos que pueden ser usados en otros componentes
   return {
-    cart,  // El carrito actual
-    products,  // Los productos disponibles
-    plans,  // Los planes disponibles
-    getTotalQuantity,  // Función para obtener la cantidad total de productos únicos en el carrito/contador
-    addToCart,  // Función para agregar productos al carrito
-    removeFromCart,  // Función para eliminar productos del carrito
-    decreaseItemQuantity,  // Función para reducir la cantidad de un producto
-    clearCart,  // Función para vaciar el carrito
+    cart,
+    products,
+    plans,
+    addToCart,
+    removeFromCart,
+    decreaseItemQuantity,
+    clearCart,
+    getTotalPrice,
+    getTotalQuantity,
   };
 };
 

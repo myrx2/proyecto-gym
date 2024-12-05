@@ -1,25 +1,22 @@
 import React from 'react';
 import PlanCard from '../components/PlanCard';
 import CardSection from '../components/CardSection';
-import productData from '../db/db.json'; 
-
+import useCart from '../hooks/useCart';  // Si prefieres seguir utilizando el hook useCart
 
 const ProductsSection = () => {
-  const addToCart = (product) => {
-    console.log('Producto agregado al carrito:', product);
-  };
+  const { plans, products, addToCart } = useCart();  // Usamos el hook `useCart` para obtener los planes y productos.
 
   return (
-    <>
+    <> <h2>Planes</h2>
       <section className="plans-section">
-        {productData.plans && productData.plans.length > 0 ? (
-          productData.plans.map((plan) => (
+        {plans && plans.length > 0 ? (
+          plans.map((plan) => (
             <PlanCard
               key={plan.id}
               title={plan.title}
               description={plan.description}
               price={plan.price}
-              onAcquire={() => alert(`${plan.title} adquirido!`)}
+              onAcquire={() => addToCart(plan)}  // Acción de agregar el plan al carrito.
             />
           ))
         ) : (
@@ -28,8 +25,8 @@ const ProductsSection = () => {
       </section>
 
       <section className="products-section">
-      <h2>Productos</h2>
-        <CardSection products={productData.products} addToCart={addToCart} />
+        <h2>Productos</h2>
+        <CardSection products={products} addToCart={addToCart} />
       </section>
     </>
   );
